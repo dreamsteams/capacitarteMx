@@ -1,0 +1,241 @@
+html, body{
+  height: 100%;
+}
+
+body{
+  font-family: Arial;
+  background-color: rgb(238, 238, 238);
+}
+
+.alturaTop{
+  height: 100%;
+}
+
+button{
+  outline: none !important;
+}
+
+#miNavbar{
+  background-color: rgba(1, 1, 1, 1);
+  border: none;
+  min-height: 80px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgba(21, 20, 43, 1);
+    /*margin-top: 30px;*/
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-toggle {
+    position: relative;
+    float: right;
+    margin-right: 15px;
+    padding: 9px 10px;
+    margin-top: 25px;
+    margin-bottom: 8px;
+    background-color: rgba(124, 124, 124, 0.77);
+    background-image: none;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: 4px;
+}
+
+#navbar > ul > li > a{
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+  font-size: 1em;
+  margin-top: 15px;
+}
+
+#navbar > ul > li > a:hover{
+  color: rgb(228, 69, 27);
+  transition: .4s;
+}
+
+.navbar-brand > img{
+  width: 70%;
+}
+
+#inicio{
+  background-image: url(../images/capacitarte/mar.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 70px;
+}
+
+#loginBox{
+  background-color: rgba(1, 1, 1, 0.8);
+  border-radius: 3px;
+  border: none;
+  margin-top: 95px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+input[type="text"], input[type="password"]{
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+}
+
+.btn-primary-custom{
+  background-color: rgb(228, 69, 27);
+  color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 200px;
+}
+
+.btn-primary-custom:hover{
+  background-color: rgb(204, 44, 2);
+  color: rgba(255, 255, 255, 1);
+  transition: .4s;
+}
+
+#entrar{
+  margin-right: -15px;
+}
+
+#informacion{
+  margin-top: 80px;
+  margin-bottom: 80px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.1em;
+}
+
+.infoPanel{
+  background-color: rgba(157, 157, 157, 0.2);
+  border: solid 2px rgba(80, 80, 80, 0.3);
+  box-shadow: 0px 0px 3px rgba(80, 80, 80, 0.3);
+  padding: 20px;
+  min-height: 450px;
+  max-height: 450px;
+  margin-top: 15px;
+  border-radius: 0px;
+}
+
+.infoPanel > h3{
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+hr{
+    border: solid 1px rgba(80, 80, 80, 0.3);
+  margin-top: 80px;
+}
+
+#imgDiv{
+  margin-top: 45px;
+  opacity: 0.5;
+}
+
+#informacion-2{
+  margin-top: 35px;
+}
+
+#img-guia{
+  margin-top: 30px;
+}
+
+.icon{
+  border: solid 2px rgba(0, 0, 0, 0.4);
+  width: 150px;
+  height: 150px;
+  padding-top: 40px;
+  border-radius: 50%;
+  font-size: 5em;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.p1, .p2, .p3{
+  width: 100%;
+  height: 150px;
+  margin-bottom: 25px;
+}
+
+.p1{
+  background-color: red;
+}
+
+.p2{
+  background-color: blue;
+}
+
+.p3{
+  background-color: green;
+}
+
+#info2-Titulo{
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+#btns > button, .btn-cap{
+  width: 150px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  background-color: transparent;
+  color: rgb(228, 100, 27);
+  border: solid 2px rgb(228, 100, 27);
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+#btns > button:hover, .btn-cap:hover{
+  background-color: rgba(222, 116, 55, 1);
+  color: white;
+  border: solid 2px rgb(227, 82, 0);
+  transition: .3s;
+}
+
+#galeria{
+  /*background-color: rgb(222, 116, 55);    */
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 150px;
+}
+
+.galleryActive{
+  background-color: rgba(222, 116, 55, 1) !important;
+  color: white !important;
+  border: solid 2px rgb(227, 82, 0) !important;
+}
+
+#contacto{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+textarea.form-control{
+  font-size: 1.3em;
+}
+
+#contactoEmail{
+  margin-top: 30px;
+}
+
+footer{
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: black;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#enviarComent{
+  margin-right: -15px;
+  width: 100%;
+  max-width: 250px;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+#pie{
+  margin-top: 20px;
+  opacity: 0.5;
+}

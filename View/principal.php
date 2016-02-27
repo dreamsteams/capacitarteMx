@@ -33,17 +33,17 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="assets/images/capacitarte/logo.png" alt="" class="img-responsive">
+          <img src="assets/images/capacitarte/logo.png" alt="" class="img-responsive nav-inicio">
         </a>
       </div>
 
       <div class="collapse navbar-collapse navbar-right" id="navbar">
         <ul class="nav navbar-nav">
-          <li class=""><a href="javascript:void(0)">INICIO</a></li>
-          <li class=""><a href="javascript:void(0)">NOSOTROS</a></li>
-          <li class=""><a href="javascript:void(0)">PORTAFOLIO</a></li>
-          <li class=""><a href="javascript:void(0)">NUESTRO EQUIPO</a></li>
-          <li class=""><a href="javascript:void(0)">CONTACTO</a></li>
+          <li class="nav-inicio"><a href="javascript:void(0)">INICIO</a></li>
+          <li id="nav-nosotros"><a href="javascript:void(0)">NOSOTROS</a></li>
+          <li id="nav-portafolio"><a href="javascript:void(0)">PORTAFOLIO</a></li>
+          <li id="nav-equipo"><a href="javascript:void(0)">NUESTRO EQUIPO</a></li>
+          <li id="nav-contacto"><a href="javascript:void(0)">CONTACTO</a></li>
         </ul>
       </div>
     </div>
@@ -150,13 +150,13 @@
               TODO
             </button>
             <button type="button" class="btn btn-cap btn-lg wow fadeInDown" data-wow-delay="0.5s" id="btn-rojo">
-              ROJOS
+              SECCION 1
             </button>
             <button type="button" class="btn btn-success btn-lg wow fadeInDown" data-wow-delay="0.8s" id="btn-azul">
-              AZULES
+              SECCION 2
             </button>
             <button type="button" class="btn btn-success btn-lg wow fadeInDown" data-wow-delay="1s" id="btn-verde">
-              VERDES
+              SECCION 3
             </button>
           </div>
         </div>
@@ -164,32 +164,71 @@
       <div class="row">
         <div class="col-md-12 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="2s">
           <div class="col-xs-4 col-md-3 divp1">
-            <div class="p p1"></div>
+            <div class="p">
+              <img src="assets/images/galeria/1.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3 divp1">
-            <div class="p p1"></div>
+            <div class="p">
+              <img src="assets/images/galeria/2.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3 divp1">
-            <div class="p p1"></div>
+            <div class="p">
+              <img src="assets/images/galeria/3.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3 divp1">
-            <div class="p p1"></div>
+            <div class="p">
+              <img src="assets/images/galeria/4.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3 divp2">
-            <div class="p p2"></div>
+            <div class="p">
+              <img src="assets/images/galeria/5.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3  divp2">
-            <div class="p p2"></div>
+            <div class="p">
+              <img src="assets/images/galeria/6.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
           <div class="col-xs-4 col-md-3  divp3">
-            <div class="p p3"></div>
+            <div class="p">
+              <img src="assets/images/galeria/7.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3  divp3">
+            <div class="p">
+              <img src="assets/images/galeria/8.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3  divp3">
+            <div class="p">
+              <img src="assets/images/galeria/9.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3  divp3">
+            <div class="p">
+              <img src="assets/images/galeria/10.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3  divp3">
+            <div class="p">
+              <img src="assets/images/galeria/11.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-3  divp3">
+            <div class="p">
+              <img src="assets/images/galeria/12.jpg" alt="" class="img-responsive img-thumbnail">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="container demo-1 wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s">
+  <div class="container demo-1 wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s" id="equipo">
     <div id="slider" class="sl-slider-wrapper">
 			<div class="sl-slider">
 
@@ -244,7 +283,7 @@
 						</div>
 					</div>
 
-					<div class="sl-slide bg-4" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
+					<div class="sl-slide bg-2" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -261,7 +300,7 @@
 						</div>
 					</div>
 
-					<div class="sl-slide bg-5" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+					<div class="sl-slide bg-3" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -278,7 +317,7 @@
 						</div>
 					</div>
 
-          <div class="sl-slide bg-4" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+          <div class="sl-slide bg-2" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -295,7 +334,7 @@
 						</div>
 					</div>
 
-          <div class="sl-slide bg-4" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+          <div class="sl-slide bg-3" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -312,7 +351,7 @@
 						</div>
 					</div>
 
-          <div class="sl-slide bg-4" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+          <div class="sl-slide bg-2" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -329,7 +368,7 @@
 						</div>
 					</div>
 
-          <div class="sl-slide bg-4" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
+          <div class="sl-slide bg-3" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
 						<div class="sl-slide-inner">
 							<div class="deco">
                 <center>
@@ -444,8 +483,7 @@
     </footer>
 
   <script src="assets/js/jquery.min.js" charset="utf-8"></script>
-  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>
-  <script src="assets/js/galleryEfect.js" charset="utf-8"></script>
+  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>  
   <script src="assets/js/wow.min.js" charset="utf-8"></script>
   <!-- scripts para el slider -->
   <script type="text/javascript" src="assets/js/slider/modernizr.custom.79639.js"></script>
@@ -454,5 +492,7 @@
   <script type="text/javascript" src="assets/js/slider/sliderControl.js"></script>
   <!-- script web -->
   <script src="assets/js/capacitarte.js" charset="utf-8"></script>
+  <script src="assets/js/scrolling.js"></script>
+  <script src="assets/js/galleryEfect.js" charset="utf-8"></script>
 </body>
 </html>

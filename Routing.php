@@ -17,7 +17,7 @@ class Routing{
             }
         }
         else{
-            //throw new ExceptionRoute\"La ruta establecida no puede ser encontrada";
+            //throw new Exception("La ruta establecida no puede ser encontrada");
         }
 
     }

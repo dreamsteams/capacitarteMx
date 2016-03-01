@@ -1,3 +1,8 @@
+.slideIMG{
+	width: 90%;
+	margin-top: 12px;
+}
+
 .sl-slider-wrapper {
 	width: 800px;
 	height: 400px;
@@ -111,4 +116,3 @@
 .sl-slide-vertical .sl-slide-inner {
 	background: #ccc;
 }
-

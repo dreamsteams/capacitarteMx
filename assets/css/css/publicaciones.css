@@ -1,0 +1,221 @@
+#contenido {
+    padding-left: 17%;
+    padding-top: 5%;
+}
+div.card-image
+{
+    animation: 1.6s into-up 1;
+}
+#contenido .col-lg-8>div.card-panel
+{
+    animation: 1.6s into-down 1;
+
+}
+#menu-comentar
+{
+    display: none;
+}
+
+
+.card-image>.view>img
+{
+    max-width: 100%;
+    height: auto;
+    max-height:350px;
+    vertical-align: middle;
+}
+
+body
+{
+    background: #fff!important;
+}
+#contenido>.container-fluid>.row>.col-lg-8
+{
+   padding-left: 5%;
+
+}
+
+
+div.hidden-xs>a[class*="btn"]
+{
+
+    color: white;
+    padding: 10px 32px;
+    margin-bottom: 0!important;
+    border-radius: 2px;
+    outline: 0!important;
+    transition: .2s ease-out;
+    margin: 10px;
+
+}
+.comentarios>h4
+{
+ display: inline-block;
+    margin-left: 40%;
+}
+.comentarios img,.publicaciones img
+{
+    border-radius: 50%;
+}
+
+.comentario,.comentarios {
+	display: none;
+}
+hr.hr-weight
+{
+    color: black;
+    background: rgba(90, 89, 89, 0.77);
+}
+.like
+{
+    background:#4264aa!important;
+    color:#fff!important;
+}
+.like:hover,.comentar:hover,.show-comments:hover
+{
+  color:#fff!important;
+}
+.comentar {
+    background: #30CFC0!important;
+    color:#fff!important;
+}
+.show-comments
+{
+    background: #DD4B39!important;
+    color:#fff!important;
+}
+.opacity-4
+{
+    opacity: .4!important;
+}
+.publicaciones>p
+{
+    font-size: 1.1em!important;
+}
+.comentario .btn
+{
+    padding: 5px 15px!important;
+    margin-bottom: 0!important;
+}
+.comentarios>div.col-sm-2>h6.text-left {
+	display: inline !important;
+    color:red;
+}
+
+.publicaciones>h4,.publicaciones>h5
+{
+    display: inline;
+}
+.publicaciones>span {
+	float: right;
+}
+.options>.option1,.option2,.option3 {
+    display: inline-block;
+
+}
+
+.options span.badge  {
+    float: right;
+    display: inline;
+}
+div.hidden-xs>a[class*="btn"]:hover
+{
+    color: white;
+    box-shadow: 0 8px 17px 0px rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+    border-radius: 3px;
+
+}
+.tabs-3>li.active {
+	border-bottom: 3.4px solid #ee7e32;
+
+}
+
+div.visible-xs>span>a
+{
+    color: white;
+    padding: 10px 32px;
+    margin-bottom: 0!important;
+    border-radius: 2px;
+    outline: 0!important;
+    transition: .2s ease-out;
+    margin: 10px;
+}
+div.visible-xs>span:hover>a
+{
+    color: white;
+    box-shadow: 0 8px 17px 0px rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+    border-radius: 3px;
+}
+
+.btn-home,.btn-home-min,.btn-upload-image,.btn-upload-image-min {
+   background: #0381ff;
+
+}
+#titulo:focus ~ label
+{
+    transform: translateY(-20px);
+}
+#titulo ~ label
+{
+    transform: translateY(-12px);
+}
+#comentario:focus  ~ label
+{
+    transform: translateY(-8px);
+}
+.btn-home:hover,.btn-home-min:hover,btn-upload-image:hover,.btn-upload-image-min:hover {
+    background: rgba(3, 129, 255, 0.85);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+.btn-comment,.btn-comment-min,.btn-publicar,.btn-publicar-min
+{
+    background: #22c16b;
+}
+.btn-comment:hover,.btn-comment-min:hover,.btn-publicar:hover,.btn-publicar-min:hover
+{
+    background: rgba(34, 193, 107, 0.87);
+}
+.btn-change-image,.btn-change-image-min,.btn-cancelar,.btn-cancelar-min{
+    background: #d01919;
+}
+.btn-change-image:hover,.btn-change-image-min:hover,.btn-cancelar:hover,.btn-cancelar-min:hover {
+	background: rgba(208, 25, 25, 0.9);
+}
+div.hidden-xs>a[class*="btn"]>i,div.visible-xs>span>a>i.fa
+{
+    font-size: 1.34em;
+    width: 1em;
+}
+@keyframes into-up
+{
+    0%{transform:  scaleZ(2)translateY(30px); opacity: .8;}
+    50%{transform: scaleZ(1) translateY(0px);opacity: .9}
+    75%{transform: translateY(10px);opacity: 1}
+    100%{transform: translateY(0);}
+}
+@keyframes into-down
+{
+    0%{transform: scaleZ(2)translateY(-30px); opacity: .8;}
+    50%{transform: scaleZ(1) translateY(0px);opacity: .9}
+    75%{transform: translateY(-10px);opacity: 1}
+    100%{transform: translateY(0);}
+}
+.tab-content .col-sm-4>img{
+	border-radius: 50%;
+}
+.tabs-3
+{
+    background: rgb(36, 36, 165);
+}
+.tabs-3>li:hover {
+	transform: translateY(-2px);
+    transition: .4s ease-out;
+}
+.tabs-3>li>a
+{
+    font-weight: bold;
+}

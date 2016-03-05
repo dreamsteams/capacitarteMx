@@ -11,7 +11,7 @@ div.card-image
     animation: 1.6s into-down 1;
 
 }
-#menu-comentar
+#menu-modificar
 {
     display: none;
 }
@@ -122,8 +122,13 @@ div.hidden-xs>a[class*="btn"]:hover
 {
     color: white;
     box-shadow: 0 8px 17px 0px rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
-    border-radius: 3px;
+    border-radius: 4px;
 
+}
+a[class*="btn"]:hover
+{
+     box-shadow: 0 8px 17px 0px rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+    border-radius: 3px;
 }
 .tabs-3>li.active {
 	border-bottom: 3.4px solid #ee7e32;
@@ -199,7 +204,9 @@ div.hidden-xs>a[class*="btn"]>i,div.visible-xs>span>a>i.fa
 }
 @keyframes into-down
 {
-    0%{transform: scaleZ(2)translateY(-30px); opacity: .8;}
+    0%{
+        transform: scaleZ(2)translateY(-30px); opacity: .8;
+    }
     50%{transform: scaleZ(1) translateY(0px);opacity: .9}
     75%{transform: translateY(-10px);opacity: 1}
     100%{transform: translateY(0);}

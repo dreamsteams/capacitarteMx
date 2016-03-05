@@ -29,9 +29,7 @@ body {
     overflow: hidden;
     z-index: 190;
 }
- .fa:hover {
-    animation: .7s balanceo 1;
-}
+
 .navbar_header>div.btnToggle {
 	color: white;
     display: none;
@@ -97,7 +95,7 @@ view .content, .view .mask {
 
 }
 .img-user {
-	background: url(/assets/Imagenes/blog/portada/portada.jpg) center center no-repeat;
+	background: url(/assets/images/blog/portadas/portada.jpg) center center no-repeat;
     background-size: cover;
 
 
@@ -184,7 +182,10 @@ view .content, .view .mask {
     box-shadow: 1px 0px 6px #ee7e32;
     transition: .2s;
 }
-
+.text-right
+{
+    float: right;
+}
 .navbar-left-list>li>a>i[class*="fa-chevron"] {
     margin-left: 50%;
 }

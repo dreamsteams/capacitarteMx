@@ -27,7 +27,6 @@ class Request{
                 $twig = new Twig_Environment($loader);
             if(!$_SESSION['role']){
 
-
                 echo $twig->render('principal.php');
             }
             else{

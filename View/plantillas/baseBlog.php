@@ -157,17 +157,19 @@
 <!-- Fin de contenido-->
 
     <!-- JS -->
-    <script type="text/javascript" src="/assets/JS/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/assets/JS/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="/assets/JS/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assets/CSS/mdb.min.css"></script>
-    <script type="text/javascript" src="/assets/JS/ripples.min.js"></script>
-    <script type="text/javascript" src="/assets/JS/wow.min.js"></script>
-    <script type="text/javascript" src="/assets/JS/waves-effect.js"></script>
-    <script type="text/javascript" src="/assets/JS/buttons.js"></script>
-    <script type="text/javascript" src="/assets/JS/app.js"></script>
-    <script type="text/javascript" src="/assets/JS/js/baseBlog.js"></script>
-    <script type="text/javascript" src="/assets/JS/js/blog.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/css/mdb.min.css"></script>
+    <script type="text/javascript" src="/assets/js/ripples.min.js"></script>
+    <script type="text/javascript" src="/assets/js/wow.min.js"></script>
+    <script type="text/javascript" src="/assets/js/waves-effect.js"></script>
+    <script type="text/javascript" src="/assets/js/buttons.js"></script>
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+    <script type="text/javascript" src="/assets/js/js/baseBlog.js"></script>
+    <script type="text/javascript" src="/assets/js/js/blog.js"></script>
+    <script type="text/javascript" src="/assets/js/moment.js"></script>
+    <script type="text/javascript" src="/assets/js/es.js"></script>
     {% block js %}{% endblock%}
     <!-- FIN JS-->
 </body>

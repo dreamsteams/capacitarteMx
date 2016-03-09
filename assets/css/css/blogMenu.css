@@ -1,0 +1,119 @@
+body{
+
+}
+
+input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.materialize-textarea, textarea.form-control {
+    background-color: transparent;
+    border: solid 1px #bbbbbb;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    transition: all .3s;
+}
+
+#contenidoBlog{
+  padding-left: 19%;
+}
+
+.card-post{
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: 30px;
+  min-height: 350px;
+  max-height: 350px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.card-post > img {
+  width: 100%;
+  height: 250px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-post > h5 {
+  padding-top: 10px;
+  font-size: 1.4em;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card-post:hover{
+  cursor: pointer;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
+  transition: .4s;
+}
+
+#addPost{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 20%;
+}
+
+#addPost > center > div{
+  width: 120px;
+  height: 120px;
+  font-size: 6em;
+  border: solid 8px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+#addPost > center > div > label{
+  font-size: 1em;
+}
+
+#addPost > center h4{
+  margin-top: 30px;
+}
+
+#addPost:hover{
+  border: solid 1px rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: .4s;
+}
+
+.actionButtons{
+  position: absolute;
+  width: 100%;    
+}
+
+.actionButtons > .btn-fab{
+  margin-right: 30px;
+  margin-top: 15px;
+}
+
+.btnUpdatePost{
+  margin-right: 0px !important;
+  opacity: 0.5;
+}
+
+.btnDelPost{
+  opacity: 0.5;
+}
+
+/*-------------------*/
+
+@media (max-width: 1210px) {
+  #contenidoBlog{
+    padding-left: 5%;
+  }
+}
+
+@media (max-width: 901px) {
+  #contenidoBlog{
+    padding-left: 37%;
+  }
+}
+
+@media (max-width: 894px) {
+  #contenidoBlog{
+    padding-left: 1%;
+  }
+}

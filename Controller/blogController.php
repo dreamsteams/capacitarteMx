@@ -28,6 +28,11 @@ class blogController extends BaseController {
     -----------------------------------*/
     public function show()
     {
+        echo $this->View->render('bloggMenu.php');
+    }
+
+    public function showPost()
+    {
         echo $this->View->render('bloggers.php');
     }
 

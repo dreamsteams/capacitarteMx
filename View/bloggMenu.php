@@ -1,7 +1,7 @@
 {%extends 'plantillas/baseBlog.php'%}
 {%block title%} Bloggs {% endblock%}
 {%block css%}
-<link rel="stylesheet" media="all" href="../../assets/css/css/blogMenu.css">
+<link rel="stylesheet" media="all" href="/assets/css/css/blogMenu.css">
 {%endblock%}
 
 {%block contenido%}
@@ -40,7 +40,7 @@
               </div>
             </div>
           <div class="card-post push-post text-center">
-            <img src="../../assets/images/blog/portadas/p1.jpg" alt="" class="img-responsive">
+            <img src="/assets/images/blog/portadas/p1.jpg" alt="" class="img-responsive">
             <h5>Titulo del post</h5>
           </div>
         </div>
@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="card-post push-post text-center">
-            <img src="../../assets/images/blog/portadas/img (35).jpg" alt="" class="img-responsive">
+            <img src="/assets/images/blog/portadas/img (35).jpg" alt="" class="img-responsive">
             <h5>Titulo del post</h5>
           </div>
         </div>
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="card-post text-center">
-            <img src="../../assets/images/blog/portadas/img (37).jpg" alt="" class="img-responsive">
+            <img src="/assets/images/blog/portadas/img (37).jpg" alt="" class="img-responsive">
             <h5>Titulo del post</h5>
           </div>
         </div>
@@ -91,7 +91,7 @@
             </div>
           </div>
           <div class="card-post text-center">
-            <img src="../../assets/images/blog/portadas/img (33).jpg" alt="" class="img-responsive">
+            <img src="/assets/images/blog/portadas/img (33).jpg" alt="" class="img-responsive">
             <h5>Titulo del post</h5>
           </div>
         </div>
@@ -137,7 +137,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $(".push-post").click(function(event) {
-        document.location.href = "/capacitarteMx-master/blog/showPost/post";
+        document.location.href = "/blog/showPost/post";
       });
 
       $("#addPost").click(function(event) {

@@ -1,7 +1,7 @@
 {%extends 'plantillas/baseBlog.php'%}
 {%block title%} Bloggs {% endblock%}
 {%block css%}
-<link rel="stylesheet" media="all" href="/assets/CSS/css/publicaciones.css">
+<link rel="stylesheet" media="all" href="../../assets/CSS/css/publicaciones.css">
 {%endblock%}
 
 {%block contenido%}
@@ -12,7 +12,7 @@
                 <!--Image Card-->
                     <div class="card-image">
                         <div class="view overlay hm-blue-slight z-depth-1 hoverable">
-                            <img src="/assets/images/blog/portadas/p1.jpg" class="img-responsive" alt="">
+                            <img src="../../assets/images/blog/portadas/p1.jpg" class="img-responsive" alt="">
                             <a href="#">
                                 <div class="mask waves-effect"></div>
                             </a>
@@ -132,7 +132,7 @@
                       <div class="comments row">
                       <hr class="col-md-12">
                        <div class="col-sm-2">
-                            <img src="/assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
+                            <img src="../../assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
 
                        </div>
                         <div class="col-md-9">
@@ -146,7 +146,7 @@
                      <div class="comments row">
                       <hr class="col-md-12">
                        <div class="col-sm-2">
-                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                            <img src="../../assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
 
                        </div>
                         <div class="col-md-9">
@@ -177,7 +177,7 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
                                         </div>
                                         <div class="col-sm-8">
                                             <h5 class="title">Title of event</h5>
@@ -192,7 +192,7 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Party of Gerson</h5>
@@ -207,7 +207,7 @@
                                 <a>
                                 <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-3.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/avatar-3.jpg" class="img-responsive z-depth-1"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Where is gerson?</h5>
@@ -226,7 +226,7 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/portada_files/elegant-gall-new-1-min.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-sm-8">
                                             <h5 class="title">Title of event</h5>
@@ -241,7 +241,7 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portada/avatar-2.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Party of Gerson</h5>
@@ -256,7 +256,7 @@
                                 <a>
                                 <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/elegant-gall-new-3-min.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Where is gerson?</h5>
@@ -275,17 +275,17 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                          <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/elegant-gall-new-2-min.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-sm-8">
                                             <h5 class="title">Title of event</h5>
                                             <ul class="list-inline iteitem-details">
                                                 <li>
-<<<<<<< HEAD
+
                                                     <i class="fa fa-clock-o"> 28/02/2016 | 5:00pm</i>
-=======
+
                                                     <i class="fa fa-clock-o" id="pruebas2"> </i>
->>>>>>> master
+
                                                 </li>
                                             </ul>
                                         </div>
@@ -294,17 +294,17 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Party of Gerson</h5>
                                             <ul class="list-inline item-details">
                                                 <li>
-<<<<<<< HEAD
+
                                                     <i class="fa fa-clock-o"> 22/02/2016 | 6:00pm</i>
-=======
+
                                                     <i class="fa fa-clock-o" id="pruebas1"> 22/02/2016 &nbsp;6:00pm</i>
->>>>>>> master
+
                                                 </li>
                                             </ul>
                                         </div>
@@ -313,17 +313,17 @@
                                 <a>
                                     <div class="row hoverable">
                                         <div class="col-sm-4">
-                                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
+                                            <img src="../../assets/images/blog/portadas/elegant-gall-new-3-min.jpg" class="img-responsive z-depth-4"/>
                                         </div>
                                         <div class="col-md-8">
                                             <h5 class="title">Where is gerson?</h5>
                                             <ul class="list-inline item-details">
                                                 <li>
-<<<<<<< HEAD
+
                                                     <i class="fa fa-clock-o"> 22/02/2016 | 6:00pm</i>
-=======
+
                                                     <i class="fa fa-clock-o" id="pruebas"> </i>
->>>>>>> master
+
                                                 </li>
                                             </ul>
                                         </div>

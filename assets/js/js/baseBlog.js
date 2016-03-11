@@ -83,7 +83,7 @@ $(document).ready(function(){
            $("#mask").hide();
            $("#myaside").css({"z-index":""});
            $("#myaside").show();
-           console.log($(window).width());
+          //  console.log($(window).width());
 
        }
        else

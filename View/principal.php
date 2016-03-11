@@ -24,6 +24,7 @@
       margin-top: 12px;
     }
   </style>
+
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="miNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -64,11 +65,16 @@
                 </div>
               </form>
               <div class="text-right">
-                <button type="button" id="entrar" class="btn btn-lg btn-primary-custom">
+                <a href="blog/show/post" id="entrar" class="btn btn-lg btn-primary-custom">
                   Entrar
                   &nbsp;
                   <i class="fa fa-arrow-right"></i>
-                </button>
+                </a>
+                <!-- <button type="button" id="entrar" class="btn btn-lg btn-primary-custom">
+                  Entrar
+                  &nbsp;
+                  <i class="fa fa-arrow-right"></i>
+                </button> -->
               </div>
             </div>
           </div>
@@ -228,7 +234,7 @@
     </div>
   </section>
 
-  <div class="container demo-1 wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.3s" id="equipo">
+  <div class="container demo-1 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.3s" id="equipo">
     <div id="slider" class="sl-slider-wrapper">
 			<div class="sl-slider">
 
@@ -483,7 +489,7 @@
     </footer>
 
   <script src="assets/js/jquery.min.js" charset="utf-8"></script>
-  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>  
+  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>
   <script src="assets/js/wow.min.js" charset="utf-8"></script>
   <!-- scripts para el slider -->
   <script type="text/javascript" src="assets/js/slider/modernizr.custom.79639.js"></script>

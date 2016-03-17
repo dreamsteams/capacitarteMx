@@ -1,22 +1,24 @@
 <?php namespace Model;
-class Usuario extends BaseModel{
-    private $nombre;
-    private $apellido_paterno;
-    private $apellido_materno;
-    private $email;
-    private $password;
-    private $codigo_usuario;
-    private $activo;
-    private $rol_id;
+class Usuario {
+    public $nombre;
+    public $apellido_paterno;
+    public $apellido_materno;
+    public $email;
+    public $password;
+    public $codigo_usuario;
+    public $activo;
+    public $rol_id;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();
         $datos->Conectar();
         $posts=$datos->Select("Select * from usuarios");
+        $datos->Desconectar();
         return $posts;
     }
+
     public function save(){
         $datos = new PDO\Datos();
         $datos->Conectar();
@@ -35,11 +37,37 @@ class Usuario extends BaseModel{
         $datos->Update("UPDATE archivos SET enabled = '$this->enabled' where id = '$id'");
         $datos->Desconectar();
     }
+    /*------------------------
+    function  estatica para
+    verificar las credenciales
+    del usuario
+    --------------------------*/
+    public  function attempt($user,$pwd){
+        $user = $this->limpiar($user);
+        $pwd = md5($this->limpiar($pwd));
+        $datos = new PDO\Datos();
+        try {
+            $datos->Conectar();
+            $posts=$datos->Select("Select * from usuarios where email = '$user' && password= '$pwd' ");
+            $datos->Desconectar();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        if($posts){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function find($id = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
         $query=$datos->SelectJson("Select * from comentarios where id = '$id'");
         $datos->Desconectar();
         return $query;
+    }
+    private function limpiar($val){
+        $val = str_replace("","'",$val);
+        return $val;
     }
 }

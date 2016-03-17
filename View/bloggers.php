@@ -129,7 +129,6 @@
                       <hr class="col-md-12">
                        <div class="col-sm-2">
                             <img src="/assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
-
                        </div>
                         <div class="col-md-9">
                            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius.

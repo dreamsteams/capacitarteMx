@@ -55,21 +55,21 @@
         <div class="well well-lg" id="loginBox">
           <div class="row">
             <div class="col-md-12">
-              <form class="form-horizontal" action="" method="post">
+              <form class="form-horizontal" action="login/login/show" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="" placeholder="Usuario">
+                  <input type="text" class="form-control" id="" name="username" placeholder="Usuario">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="" placeholder="Contraseña">
+                  <input type="password" class="form-control" id="" name="password" placeholder="Contraseña">
+                </div>
+                <div class="text-right">
+                  <button type="submit" id="entrar" class="btn btn-lg btn-primary-custom">
+                    Entrar
+                    &nbsp;
+                    <i class="fa fa-arrow-right"></i>
+                  </button>
                 </div>
               </form>
-              <div class="text-right">
-                <button type="button" id="entrar" class="btn btn-lg btn-primary-custom">
-                  Entrar
-                  &nbsp;
-                  <i class="fa fa-arrow-right"></i>
-                </button>
-              </div>
             </div>
           </div>
         </div>

@@ -274,7 +274,7 @@
                                             <h5 class="title">Title of event</h5>
                                             <ul class="list-inline iteitem-details">
                                                 <li>
-                                                    <i class="fa fa-clock-o"> 28/02/2016 &nbsp;5:00pm</i>
+                                                    <i class="fa fa-clock-o" id="pruebas2"> </i>
                                                 </li>
                                             </ul>
                                         </div>
@@ -289,7 +289,7 @@
                                             <h5 class="title">Party of Gerson</h5>
                                             <ul class="list-inline item-details">
                                                 <li>
-                                                    <i class="fa fa-clock-o"> 22/02/2016 &nbsp;6:00pm</i>
+                                                    <i class="fa fa-clock-o" id="pruebas1"> 22/02/2016 &nbsp;6:00pm</i>
                                                 </li>
                                             </ul>
                                         </div>
@@ -304,7 +304,7 @@
                                             <h5 class="title">Where is gerson?</h5>
                                             <ul class="list-inline item-details">
                                                 <li>
-                                                    <i class="fa fa-clock-o"> 22/02/2016 &nbsp;6:00pm</i>
+                                                    <i class="fa fa-clock-o" id="pruebas"> </i>
                                                 </li>
                                             </ul>
                                         </div>
@@ -320,4 +320,19 @@
 <!--fin contenido-->
 {%endblock%}
 
-{%block js%}{%endblock%}
+{%block js%}
+<script type="text/javascript" >
+
+    moment().calendar('es', {
+        sameDay: '[Hoy]',
+        nextDay: '[Mañana]',
+        nextWeek: 'dddd',
+        lastDay: '[Ayer]',
+        lastWeek: '[Last] dddd',
+        sameElse: 'DD/MM/YYYY'
+    });
+    document.getElementById("pruebas").innerHTML = " "+moment("07-03-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
+    document.getElementById("pruebas1").innerHTML = " "+moment("15-02-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
+    document.getElementById("pruebas2").innerHTML = " "+moment("08-03-2016 00:14:10","DDMMYYYY , h:mm:ss a").fromNow();
+</script>
+{%endblock%}

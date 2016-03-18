@@ -25,13 +25,7 @@
     <header class="my_navbar hoverable">
        <div class="logo">
            <img src="../../assets/images/logo.png" width="60%" class="img-responsive">
-           <!-- <h6><span>Capacitarte</span>.mx</h6> -->
        </div>
-        <div class="navbar_header hoverable">
-           <div class="btnToggle" id="btn-navbar-left">
-                <i class="fa fa-navicon fa-2x"></i>
-            </div>
-         </div>
          <ul class="migas">
              <li class="active">
                 <a href="/blog/show/all">

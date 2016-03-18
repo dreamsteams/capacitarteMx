@@ -36,4 +36,9 @@ class blogController extends BaseController {
         echo $this->View->render('bloggers.php');
     }
 
+    public function inicio()
+    {
+      echo $this->View->render('blogInicio.php');
+    }
+
 }

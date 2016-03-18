@@ -1,5 +1,5 @@
 <?php namespace Model;
-class Perfil extends BaseModel{
+class Perfil{
     private $apodo;
     private $fecha_nac;
     private $Situacion_sentimental_id;
@@ -7,7 +7,7 @@ class Perfil extends BaseModel{
     private $imagen_portada;
     private $imagen_perfil;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show($message){
         $datos = new PDO\Datos();

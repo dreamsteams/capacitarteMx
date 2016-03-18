@@ -1,5 +1,5 @@
 <?php namespace Model;
-class Usuario extends BaseModel{
+class Usuario {
     private $nombre;
     private $apellido_paterno;
     private $apellido_materno;
@@ -9,7 +9,7 @@ class Usuario extends BaseModel{
     private $activo;
     private $rol_id;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();

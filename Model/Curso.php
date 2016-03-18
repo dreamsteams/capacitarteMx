@@ -1,5 +1,5 @@
 <?php namespace Model;
-class Curso extends BaseModel{
+class Curso {
     private $nombre;
     private $descripcion;
     private $fecha_inicio;
@@ -7,7 +7,7 @@ class Curso extends BaseModel{
     private $imagenes_id;
     private $enabled;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();

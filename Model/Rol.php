@@ -1,8 +1,8 @@
 <?php namespace Model;
-class Rol extends BaseModel{
+class Rol{
     private $nombre;
     public function __construct(){
-        $this::init();
+
     }
     public static function show($message){
         $datos = new PDO\Datos();

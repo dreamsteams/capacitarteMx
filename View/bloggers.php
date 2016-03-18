@@ -6,13 +6,14 @@
 
 {%block contenido%}
 <!--all contenido-->
+<input id="id_post" type="text" >
 <div class="container-fluid">
     <div class="row">
             <div class="col-lg-9">
                 <!--Image Card-->
                     <div class="card-image">
                         <div class="view overlay hm-blue-slight z-depth-1 hoverable">
-                            <img src="../../assets/images/blog/portadas/p1.jpg" class="img-responsive" alt="">
+                            <center><img src="" class="img-responsive " id="img_post" alt=""></center>
                             <a href="#">
                                 <div class="mask waves-effect"></div>
                             </a>
@@ -20,10 +21,11 @@
                     </div>
                     <div class="card-panel view overlay hm-blue-slight text-center z-depth-1 hoverable">
                        <div id="menu-portada">
-                            <h3>Titulo del Post</h3>
-                            <h5>
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <h3 id="titulo"></h3>
+                            <h5 id="contenido_post">
+
                             </h5>
+                            <i class="fa fa-clock-o"></i><small id="created_at"></small>
                             <hr>
                             <div hidden="hidden">
                               <div class="hidden-xs">
@@ -68,8 +70,8 @@
                                </div>
                             </div>
                             <div class="options hidden-xs">
-                                  <div class="option1">
-                                       <a  class="btn like btn-sm-full waves-effect waves-light"> <i class="fa fa-thumbs-o-up fa-2x" ></i> Me gusta <span class="badge green">9</span></a>
+                                  <div class="option1" id="btn_like">
+                                       <a  class="btn like btn-sm-full waves-effect waves-light"> <i class="fa fa-thumbs-o-up fa-2x" ></i> Me gusta <span class="" id="like" hidden="hidden"></span></a>
                                    </div>
                                    <div class="option2">
                                       <a class="btn btn-sm-full comentar waves-effect waves-light"><i class="fa fa-commenting fa-2x"></i> Comentar</a>
@@ -85,7 +87,7 @@
                                       <a id="comentar" class="btn btn-success btn-sm waves-effect waves-light"><i class="fa fa-commenting fa-2x"></i></a>
                                  </div>
                                  <div class="hidden-xs">
-                                      <a id="comentar" class="btn btn-success btn-sm waves-effect waves-light"><i class="fa fa-commenting fa-2x"></i></a>
+                                      <a id="comentar-lg" class="btn btn-success btn-sm waves-effect waves-light"><i class="fa fa-commenting fa-2x"></i></a>
                                  </div>
                             </div>
                         </div>
@@ -340,8 +342,79 @@
 {%endblock%}
 
 {%block js%}
+<script type="text/javascript" src="/assets/js/js/Create.js"></script>
 <script type="text/javascript" >
+    $.ajax({
+        url:'/blog/postFind/encontrar',
+        method:'POST',
+        dataType:"JSON",
+        cache:false
+    }).done(function(response){
+        $.each(response,function(i,o){
+            $("#img_post").attr("src","/"+o.src);
+            $("#titulo").text(o.titulo);
+            $("#contenido_post").text(o.contenido);
+            $("#created_at").text(" "+moment(o.created_at,"YYYYMMDD4 , h:mm:ss a").fromNow());
+        });
+    }).fail(function(error,status,statusText){
+        console.log(error);
+        console.log(status);
+        console.log(statusText);
+    });
 
+    $.ajax({
+        url:'/like/getLikes/all',
+        method:'POST',
+        dataType:"JSON",
+        cache:false
+    }).done(function(response){
+        if(response[0].total > 0){
+            $("#like").text(response[0].total);
+            $("#like").addClass("badge green");
+            $("#like").removeAttr("hidden");
+        }
+
+    }).fail(function(error,status,statusText){
+        console.log(error);
+        console.log(status);
+        console.log(statusText);
+    });
+
+
+    $("#btn_like").click(function(){
+        $.ajax({
+            url:'/like/setLikes/all',
+            method:'POST',
+            dataType:"JSON",
+            cache:false
+        }).done(function(response){
+            var tot= parseFloat($("#like").text());
+            $("#like").addClass("badge green");
+            $("#like").removeAttr("hidden");
+            $("#like").text((tot+1));
+        }).fail(function(error,status,statusText){
+            console.log(error);
+            console.log(status);
+            console.log(statusText);
+        });
+    });
+
+    $("#comentar,#comentar-lg").click(function(){
+        alert();
+        $.ajax({
+            url:'/comentario/save/save-comment',
+            method:'POST',
+            dataType:'JSON',
+            cache:false,
+            data:{contenido:$("#comentario").val()}
+        }).done(function(response){
+            console.log(response);
+        }).fail(function(error,status,statusText){
+            console.log(error);
+            console.log(status);
+            console.log(statusText);
+        });
+    });
     moment().calendar('es', {
         sameDay: '[Hoy]',
         nextDay: '[Mañana]',

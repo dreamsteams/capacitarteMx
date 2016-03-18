@@ -1,11 +1,11 @@
 <?php namespace Model;
-class Archivo extends BaseModel{
+class Archivo{
     private $contenido;
     private $posts_id;
     private $usuarios_id;
     private $enabled;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();

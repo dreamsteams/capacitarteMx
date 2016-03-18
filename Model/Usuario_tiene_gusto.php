@@ -1,9 +1,9 @@
 <?php namespace Model;
-class Usuario_tiene_gusto extends BaseModel{
+class Usuario_tiene_gusto{
     private $usuarios_id;
     private $gustos_id;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();

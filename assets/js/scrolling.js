@@ -1,3 +1,4 @@
+/*Created by Wilvardo Ramirez*/
 $(document).ready(function() {
 
   var alturaInicio    = $("#inicio").height();

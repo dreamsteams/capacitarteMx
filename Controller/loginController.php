@@ -35,11 +35,18 @@ class loginController extends BaseController {
         $usuario = new \Model\usuario();
         if($usuario->attempt($username,$password)){
             //En caso de que los datos esten bien
-            echo "Los datos estan bien";
+            //echo "Los datos estan bien";
+            session_start();
+            header("Location:/blog/show/".$_SESSION['nombre'].'_'.$_SESSION['apellido_paterno'].'_'.$_SESSION['apellido_materno']);
         }else{
-            // Los datos estan mal
-            echo "Los datos estan incorrectos";
+            header("Location:/");
         }
     }
+    public function logout(){
+        session_destroy();
+        header('Location:/');
+    }
+
+
 
 }

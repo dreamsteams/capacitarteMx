@@ -18,7 +18,7 @@
 
   <header class="my_navbar hoverable">
      <div class="logo">
-         <img src="../../assets/images/logo.png" width="60%" class="img-responsive">
+         <img src="/assets/images/logo.png" width="60%" class="img-responsive">
      </div>
   </header>
 
@@ -218,17 +218,17 @@
                     <b>Iniciar Sesión</b>
                   </h5>
                   <hr>
-                  <form action="">
+                  <form id="frm_login" action="/login/login/show" method="POST">
                     <div class="form-group">
                       <label for="">Usuario</label>
-                      <input type="text" class="form-control" id="">
+                      <input type="text" class="form-control" name="username" id="">
                     </div>
                     <div class="form-group">
                       <label for="">Contraseña</label>
-                      <input type="text" class="form-control" id="">
+                      <input type="password" class="form-control" name="password" id="">
                     </div>
                   </form>
-                  <button type="button" class="btn btn-primary btn-block">
+                  <button type="button" id="entrar" class="btn btn-primary btn-block">
                     Entrar
                   </button>
                   <button type="button" class="btn btn-warning btn-block">
@@ -244,6 +244,14 @@
     </section>
 
   </div>
-
+  <script src="/assets/js/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).on("ready",__init);
+      function __init(){
+          $("#entrar").click(function(){
+              $("#frm_login").submit();
+          });
+      }
+  </script>
 </body>
 </html>

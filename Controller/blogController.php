@@ -28,7 +28,14 @@ class blogController extends BaseController {
     -----------------------------------*/
     public function show()
     {
-        echo $this->View->render('bloggMenu.php');
+        session_start();
+        if($_SESSION)
+            if($_SESSION['rol'] == 'administrador')
+                echo $this->View->render('bloggMenu.php');
+            else
+                header('Location:/');
+        else
+            header('Location:/');
     }
     public function postFind(){
         session_start();

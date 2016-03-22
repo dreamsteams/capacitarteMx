@@ -1,5 +1,9 @@
 <?php namespace Model;
+<<<<<<< HEAD
 class Archivo{
+=======
+class Archivo {
+>>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
     private $contenido;
     private $posts_id;
     private $usuarios_id;

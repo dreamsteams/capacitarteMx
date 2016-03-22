@@ -48,16 +48,35 @@ class Usuario {
         $datos = new PDO\Datos();
         try {
             $datos->Conectar();
-            $posts=$datos->Select("Select * from usuarios where email = '$user' && password= '$pwd' ");
+            $posts=$datos->Select("Select usuarios.nombre,usuarios.apellido_paterno,usuarios.apellido_materno,usuarios.email,usuarios.password,usuarios.codigo_usuario,rol.nombre as 'Rol' from usuarios inner join rol on rol.id = usuarios.rol_id where email = '$user' && password= '$pwd' ");
             $datos->Desconectar();
         } catch (Exception $e) {
             echo $e;
         }
+
         if($posts){
+            $this->nombre = $posts[0]['nombre'];
+            $this->apellido_paterno = $posts[0]['apellido_paterno'];
+            $this->apellido_materno = $posts[0]['apellido_materno'];
+            $this->email = $posts[0]['email'];
+            $this->password = $posts[0]['password'];
+            $this->codigo_usuario = $posts[0]['codigo_usuario'];
+            $this->rol_id = $posts[0]['Rol'];
+            $this->generarObjUser();
             return true;
         }else{
             return false;
         }
+    }
+    public function generarObjUser(){
+        session_start();
+        $_SESSION['nombre'] = $this->nombre;
+        $_SESSION['apellido_paterno'] = $this->apellido_paterno;
+        $_SESSION['apellido_materno'] = $this->apellido_materno;
+        $_SESSION['password'] = $this->password;
+        $_SESSION['email'] = $this->email;
+        $_SESSION['rol'] = $this->rol_id;
+        $_SESSION['codigo_usuario'] = $this->codigo_usuario;
     }
     public function find($id = 0){
         $datos = new PDO\Datos();
@@ -68,6 +87,7 @@ class Usuario {
     }
     private function limpiar($val){
         $val = str_replace("","'",$val);
+        $val = htmlspecialchars($val);
         return $val;
     }
 }

@@ -8,7 +8,8 @@
                 $ruta = str_replace("\\","/",$class).".php";
                 //echo $ruta."<br>";
                 if(file_exists($ruta))
-                    include_once $ruta;
+                    if(!class_exists($class))
+                        include_once $ruta;
             });
         }
 

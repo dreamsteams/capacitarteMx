@@ -3,7 +3,8 @@
         Requerimos el autoload para cargar las
         clases sin la necesidad de los includes
         ---------------------------------------*/
-        require_once __DIR__."/../autoload.php";
+        if(!class_exists("Autoloader"))
+            include_once __DIR__."/../autoload.php";
 
         /*--------------------------------------
         Corremos la funcion run de nuestro
@@ -18,8 +19,8 @@
         de plantillas (Herencia, renderización,
         carga con datos, e.t.c)
         ----------------------------------------*/
-
-        require_once __DIR__.'/../vendor/autoload.php';
+        if(!class_exists("ComposerAutoloaderInit02091dd026ee4f5f79c5667e18986bfa"))
+            include_once __DIR__.'/../vendor/autoload.php';
 
         /*----------------------------------------
         Creamos la variable $loaderView la cual nos

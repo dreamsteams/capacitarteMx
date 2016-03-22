@@ -1,34 +1,44 @@
 <?php namespace Model;
-class Imagen extends BaseModel{
-    private $nombre;
-    private $ruta;
-    private $ext;
-    private $enabled;
+class Imagen {
+    public $nombre;
+    public $ruta;
+    public $ext;
+    public $enabled;
     public function __contruct(){
-        $this::init();
+
     }
     public static function show($message){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $posts=$datos->Select("Select * from comentarios");
+        $posts=$datos->Select("Select * from imagenes");
         return $posts;
     }
     public function save(){
-        $datos = new PDO\Datos();
-        $datos->Conectar();
-        $datos->Insert("INSERT INTO comentarios VALUES(NULL,'$this->nombre','$this->ruta','$this->ext','$this->enabled')");
-        $datos->Desconectar();
+        try{
+            $datos = new PDO\Datos();
+            $datos->Conectar();
+            $datos->Insert("INSERT INTO imagenes VALUES(NULL,'$this->nombre','$this->ruta','$this->ext','$this->enabled')");
+            $datos->Desconectar();
+        }
+        catch(Exception $ex){
+            echo $ex;
+        }
     }
     public function disabled($id = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $datos->Update("UPDATE posts SET enabled = '$this->enabled' where id = '$id'");
+        $datos->Update("UPDATE imagenes SET enabled = '$this->enabled' where id = '$id'");
         $datos->Desconectar();
     }
     public function find($id = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $query=$datos->SelectJson("Select * from comentarios where id = '$id'");
+        if($id != 0){
+            $query=$datos->Select("Select * from imagenes where id = $id");
+        }
+        else{
+            $query=$datos->Select("Select max(id) AS 'Last', min(id) AS 'First' from imagenes");
+        }
         $datos->Desconectar();
         return $query;
     }

@@ -483,7 +483,7 @@
     </footer>
 
   <script src="assets/js/jquery.min.js" charset="utf-8"></script>
-  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>  
+  <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>
   <script src="assets/js/wow.min.js" charset="utf-8"></script>
   <!-- scripts para el slider -->
   <script type="text/javascript" src="assets/js/slider/modernizr.custom.79639.js"></script>

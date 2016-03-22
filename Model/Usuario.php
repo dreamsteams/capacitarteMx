@@ -1,5 +1,15 @@
 <?php namespace Model;
 class Usuario {
+<<<<<<< HEAD
+    private $nombre;
+    private $apellido_paterno;
+    private $apellido_materno;
+    private $email;
+    private $password;
+    private $codigo_usuario;
+    private $activo;
+    private $rol_id;
+=======
     public $nombre;
     public $apellido_paterno;
     public $apellido_materno;
@@ -8,6 +18,7 @@ class Usuario {
     public $codigo_usuario;
     public $activo;
     public $rol_id;
+>>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
     public function __contruct(){
 
     }

@@ -1,9 +1,9 @@
 <?php namespace Model;
-class Gusto extends BaseModel{
+class Gusto {
     private $nombre;
 
     public function __contruct(){
-        $this::init();
+
     }
     public static function show(){
         $datos = new PDO\Datos();

@@ -37,10 +37,23 @@ class blogController extends BaseController {
         else
             header('Location:/');
     }
-
+    public function postFind(){
+        session_start();
+        $id = array('id'=>$_SESSION['idPost']);
+        $post = new \Model\Post();
+        $post->show($id['id']);
+    }
     public function showPost()
     {
-        echo $this->View->render('bloggers.php');
+        session_start();
+        $id = array('id'=>$_SESSION['idPost']);
+        if(!empty($id)){
+
+            echo $this->View->render('bloggers.php');
+        }
+        else{
+            header("Location:/blog/show/all");
+        }
     }
 
     public function inicio()

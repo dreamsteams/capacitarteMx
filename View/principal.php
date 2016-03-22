@@ -398,8 +398,8 @@
 					<span></span>
 					<span></span>
 					<span></span>
-          <span></span>
-          <span></span>
+                    <span></span>
+                    <span></span>
 					<span></span>
 					<span></span>
 				</nav>
@@ -493,6 +493,6 @@
   <!-- script web -->
   <script src="assets/js/capacitarte.js" charset="utf-8"></script>
   <script src="assets/js/scrolling.js"></script>
-  <script src="assets/js/galleryEfect.js" charset="utf-8"></script>
+  <script src="/assets/js/galleryEfect.min.js" charset="utf-8"></script>
 </body>
 </html>

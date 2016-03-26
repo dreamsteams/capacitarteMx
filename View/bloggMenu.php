@@ -134,12 +134,12 @@
                     contentType: false,
                     processData: false,
                     data:formData,
-                    beforeSend: function(xhr){
-
+                    beforeSend: function(){
+                            alertify.log("El post se esta publicando");
                     },
                 }).done(function(response){
 
-                    alert("Se publico el post");
+                    alertify.success("El post se publico con exito");
                     window.location="/blog/show/all"
 
                 }).fail(function(error,status,statusText){
@@ -158,7 +158,6 @@
                 dataType:"JSON",
                 cache:false
             }).done(function(response){
-                console.log(response);
                 $(".pagePosts > #contPost .posters").empty();
                 $.each(response,function(index,object){
                     console.log(object);
@@ -170,7 +169,7 @@
                     $(".pagePosts > #contPost .posters").append(elemento.Post.create());
                 });
             }).fail(function(error,status,statusText){
-                console.log(error);
+                alertify.error(error);
                 console.log(status);
                 console.log(statusText);
             });
@@ -183,7 +182,7 @@
                 data:{id:$(this).attr('data-id-post')},
                 cache:false
             }).done(function(response){
-                alert("Eliminado");
+                alertify.success("El post se elimino con exito");
                 cargarPosts();
 
             }).fail(function(error,status,statusText){
@@ -218,12 +217,12 @@
                     data:formData,
                 }).done(function(response){
 
-                    alert("Se actualizo el post");
+                    alertify.success("Se actualizo el post con exito");
                     window.location="/blog/show/all"
 
                 }).fail(function(error,status,statusText){
                     console.log(status);
-                    console.log(error);
+                    alertify.error(error);
                     console.log(statusText);
                 });
         });

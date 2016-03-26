@@ -6,19 +6,14 @@
 
 {%block contenido%}
 <!--all contenido-->
-<input id="id_post" type="text" >
 <div class="container-fluid">
     <div class="row">
             <div class="col-lg-8">
                 <!--Image Card-->
                     <div class="card-image">
-<<<<<<< HEAD
+
                         <div class="view overlay hm-blue-slight z-depth-1 hoverable">
                             <center><img src="" class="img-responsive " id="img_post" alt=""></center>
-=======
-                        <div class="view overlay hm-blue-slight z-depth-3 hoverable">
-                            <img src="/assets/images/blog/portadas/p1.jpg" class="img-responsive" alt="">
->>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
                             <a href="#">
                                 <div class="mask waves-effect"></div>
                             </a>
@@ -26,31 +21,15 @@
                     </div>
                     <div class="card-panel view overlay hm-blue-slight text-center z-depth-3 hoverable">
                        <div id="menu-portada">
-<<<<<<< HEAD
+
                             <h3 id="titulo"></h3>
                             <h5 id="contenido_post">
 
                             </h5>
                             <i class="fa fa-clock-o"></i><small id="created_at"></small>
-=======
-                            <h3>Psicología inversa</h3>
-                            <h5>-Cuando la inspiración no me encuentra, hago medio camino para encontrarla.</h5>
->>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
+
+            
                             <hr>
-                            <div class="hidden-xs">
-                                <a  class="btn-sm-full btn-home  waves-effect waves-light">
-                                   <i class="fa fa-home "></i>
-                                   <span>Inicio</span>
-                                </a>
-                                <a class="btn-sm-full btn-change-image waves-effect waves-light">
-                                    <i class="fa fa-refresh"></i>
-                                    <span>imagen</span>
-                                </a>
-                                <a class="btn-sm-full btn-comment waves-effect waves-light">
-                                    <i class="fa fa-refresh"></i>
-                                    <span>Modificar</span>
-                                </a>
-                             </div>
                             <div class="visible-xs">
                                 <span class="counter-wraper">
                                     <a class="btn-sm btn-home-min waves-effect waves-light">
@@ -138,30 +117,16 @@
                 <!-- publicaciones -->
                 <div class="card-panel row publicaciones view overlay hm-blue-slight  z-depth-3 hoverable">
                      <hr>
-                      <h5>Comentarios <span class="badge">2</span></h5>
-                      <div class="comments row">
-                      <hr class="col-md-12">
-                       <div class="col-sm-2">
-                            <img src="/assets/images/blog/portadas/avatar-2.jpg" class="img-responsive z-depth-1"/>
-                       </div>
-                        <div class="col-md-9">
-                           <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius.
-
-    Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. </p>
-                            <span class="text-right"><i class="fa fa-calendar"> 27/02/2016</i>&nbsp;&nbsp; <i class="fa fa-clock-o"> 9:00pm</i></span>
-                         </div>
-                     </div>
-                     <div class="comments row">
-                      <hr class="col-md-12">
-                       <div class="col-sm-2">
-                            <img src="/assets/images/blog/portadas/avatar-1.jpg" class="img-responsive z-depth-1"/>
-
-                       </div>
-                        <div class="col-md-9">
-                           <p class="text-justify"> Numquam ducimus ipsa ad beatae minima eligendi iste nisi consequuntur, expedita et natus, quidem nam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod quos, similique quae, saepe eius. </p>
-                            <span class="text-right"><i class="fa fa-calendar"> 27/02/2016</i>&nbsp;&nbsp; <i class="fa fa-clock-o"> 9:00pm</i></span>
-                         </div>
-                     </div>
+                      <h5>Comentarios <span class="" id="total-comment"></span></h5>
+                      <div id="totComentarios">
+                          <div id="comments">
+                              <!----Aqui se iran agregando los post encontrados---->
+                          </div>
+                          <div id="finishcomment">
+                              <!----Aqui se pondra la parte que es cuando ya no haya comentarios ---->
+                          </div>
+                      </div>
+                      <div id="loading" class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5"><i class="fa fa-spinner fa-pulse fa-2x"></i></div>
                 </div><!-- fin publicaciones-->
             </div><!--fin col-lg-8-->
             <div class="col-lg-4 visible-lg">
@@ -337,87 +302,253 @@
 {%block js%}
 <script type="text/javascript" src="/assets/js/js/Create.js"></script>
 <script type="text/javascript" >
-    $.ajax({
-        url:'/blog/postFind/encontrar',
-        method:'POST',
-        dataType:"JSON",
-        cache:false
-    }).done(function(response){
-        $.each(response,function(i,o){
-            $("#img_post").attr("src","/"+o.src);
-            $("#titulo").text(o.titulo);
-            $("#contenido_post").text(o.contenido);
-            $("#created_at").text(" "+moment(o.created_at,"YYYYMMDD4 , h:mm:ss a").fromNow());
-        });
-    }).fail(function(error,status,statusText){
-        console.log(error);
-        console.log(status);
-        console.log(statusText);
+    
+    $(document).ajaxStart(function(){
+        $("#loading").removeClass("hide");
     });
-
-    $.ajax({
-        url:'/like/getLikes/all',
-        method:'POST',
-        dataType:"JSON",
-        cache:false
-    }).done(function(response){
-        if(response[0].total > 0){
-            $("#like").text(response[0].total);
-            $("#like").addClass("badge green");
-            $("#like").removeAttr("hidden");
-        }
-
-    }).fail(function(error,status,statusText){
-        console.log(error);
-        console.log(status);
-        console.log(statusText);
+    $(document).ajaxStop(function(){
+        $("#loading").addClass("hide");
     });
+    $(document).on('ready',__init);
+    
+    
+    function __init()
+    {
+        /*-----------------------------------
+        | Variables Globales 
+        |------------------------------------
+        | Esta son las variables que se utilizaran
+        | a lo largo del actividad dentro de esta
+        | seccion
+        |-------------------------------------*/
+        
+            //---Esta variable  ayudará a evitar otras llamadas a ajax cuando no se requieren
+            var finishCallAjax = true;
+        
+            //---Me contabiliza el numero de comentarios dentro del Post
+            var contComment = 0;
+        
+            //---Esta variable ayudará a saber si ya se terminaron los comentarios dentro de ese post
+            var finishComment = false;
+        
+        /*-----------------------------------
+        | Carga de Contenido                 |
+        |------------------------------------|
+        | Inicializamos las funciones        |
+        | para poder cargar el post          |  
+        | encontrar sus likes y comentarios  | 
+        ------------------------------------*/
+            getLikes();
+            findPost();
+            getComment();
+        
+        //-------------------------------------
+        
+            //---- FUNCIONES -------//
+        //-------------------------------------
 
-
-    $("#btn_like").click(function(){
-        $.ajax({
-            url:'/like/setLikes/all',
+        //--Function para encontrar el post que se escogio
+        function findPost(){
+            $.ajax({
+            url:'/blog/postFind/encontrar',
             method:'POST',
             dataType:"JSON",
             cache:false
-        }).done(function(response){
-            var tot= parseFloat($("#like").text());
-            $("#like").addClass("badge green");
-            $("#like").removeAttr("hidden");
-            $("#like").text((tot+1));
-        }).fail(function(error,status,statusText){
-            console.log(error);
-            console.log(status);
-            console.log(statusText);
-        });
-    });
+            }).done(function(response){
+                console.log(response);
+                $.each(response,function(i,o){
+                    $("#img_post").attr("src","/"+o.src);
+                    $("#titulo").text(o.titulo);
+                    $("#contenido_post").text(o.contenido);
+                    $("#created_at").text(" "+moment(o.created_at,"YYYYMMDD , h:mm:ss a").fromNow());
+                });
+            }).fail(function(error,status,statusText){
+                console.log(error);
+                console.log(status);
+                console.log(statusText);
+            });
+        }
+        //---End Function findPost
 
-    $("#comentar,#comentar-lg").click(function(){
-        alert();
-        $.ajax({
-            url:'/comentario/save/save-comment',
-            method:'POST',
-            dataType:'JSON',
-            cache:false,
-            data:{contenido:$("#comentario").val()}
-        }).done(function(response){
-            console.log(response);
-        }).fail(function(error,status,statusText){
-            console.log(error);
-            console.log(status);
-            console.log(statusText);
-        });
-    });
-    moment().calendar('es', {
-        sameDay: '[Hoy]',
-        nextDay: '[Mañana]',
-        nextWeek: 'dddd',
-        lastDay: '[Ayer]',
-        lastWeek: '[Last] dddd',
-        sameElse: 'DD/MM/YYYY'
-    });
-    document.getElementById("pruebas").innerHTML = " "+moment("07-03-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
-    document.getElementById("pruebas1").innerHTML = " "+moment("15-02-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
-    document.getElementById("pruebas2").innerHTML = " "+moment("08-03-2016 00:14:10","DDMMYYYY , h:mm:ss a").fromNow();
+        
+        //--Function  para obtner los likes del post
+
+        function getLikes(){
+            $.ajax({
+                url:'/like/getLikes/all',
+                method:'POST',
+                dataType:"JSON",
+                cache:false
+            }).done(function(response){
+                console.log(response);
+                if(response[0].total > 0){
+                    $("#like").text(response[0].total);
+                    $("#like").addClass("badge green");
+                    $("#like").removeAttr("hidden");
+                }
+
+            }).fail(function(error,status,statusText){
+                console.log(error);
+                console.log(status);
+                console.log(statusText);
+            });
+        }
+        //---End Function getLikes
+
+        //--Cargar comentarios del post 
+        function getComment(){
+            finishCallAjax = false;
+            $.ajax({
+                url:'/comentario/show/post',
+                method:'POST',
+                dataType:'JSON',
+                cache:false
+            }).done(function(response){
+                finishCallAjax=true;
+                finishComment=false;
+                contComment=0;
+                $("#comments").empty();
+                $("#finishcomment").empty();
+                $.each(response,function(i,comentario){
+                    contComment++;
+                    elemento.Comment.id=comentario.id;
+                    elemento.Comment.contenido = comentario.contenido;
+                    elemento.Comment.srcImage = comentario.src_imagen_perfil;
+                    elemento.Comment.nombre_completo = comentario.nombre_completo;
+                    elemento.Comment.fecha = " "+moment(comentario.fecha,"YYYYMMDD , h:mm:ss a").fromNow();
+                    $("#comments").append(elemento.Comment.create());
+                });
+
+                $("#total-comment").text(contComment).addClass("badge");
+                
+            }).fail(function(error,status,statusText){
+                console.log(error);
+                console.log(status);
+                console.log(statusText);
+            });
+        }
+        //---End Function getComment
+        
+        //-------------------------------------
+        
+            //---- CLOUSHURES -------//
+        //-------------------------------------
+            
+         //---Al momento de scrollear todos los post se cargan los faltantes 
+            $(window).scroll(function(e) {
+                e.preventDefault();
+                
+	           if($(window).scrollTop() + $(window).height() == $(document).height()){
+                   var lastComment = $("#comments").children().last().attr("data-id-comment");
+                   var start = (lastComment == null || lastComment == undefined || lastComment == '') ? 0 : (parseFloat(lastComment)-1);
+                   var limit = start + 5;
+                   if(!finishComment){
+                       if(finishCallAjax){
+                           finishCallAjax=false;
+                           $.ajax({
+                               url:'/comentario/showMore/more-comments',
+                               method:'POST',
+                               dataType:'JSON',
+                               data:{start:start,limit:limit},
+                               cache:false
+                           }).done(function(response){
+
+                               if($.isArray(response)){
+                                   contComment=0;
+                                   $.each(response,function(i,comentario){
+                                       if($.isPlainObject(comentario)){
+                                           contComment++;
+                                            elemento.Comment.id = comentario.id;
+                                            elemento.Comment.contenido = comentario.contenido;
+                                            elemento.Comment.srcImage = comentario.src_imagen_perfil;
+                                            elemento.Comment.nombre_completo = comentario.nombre_completo;
+                                            elemento.Comment.fecha = " "+moment(comentario.fecha,"YYYYMMDD , h:mm:ss a").fromNow();
+                                            var lastComment2 = $("#totComentarios").children().last().attr("data-id-comment");
+                                           console.log(lastComment2+'-'+comentario.id);
+                                            if(lastComment2 != comentario.id)
+                                                $("#comments").append(elemento.Comment.create());
+                                       }
+                                    });
+                                   var commentTot = $("#total-comment").text();
+                                   if(commentTot != "")
+                                        $("#total-comment").text(parseFloat(commentTot)+contComment).addClass("badge");
+                                   finishCallAjax=true;
+                               }
+                               else{
+                                    finishComment = true;
+                                    var $message = $("<h5/>").css({
+                                        'text-align':'center',
+                                        'padding-top':'10px',
+                                        'padding-bottom':'10px',
+                                        'margin-top':'15px',
+                                        'border':'solid 2px grey',
+                                        'opacity':'.5'
+                                    });
+                                    $("#finishcomment").append($message.text("Final de comentarios"));
+                               }
+                           }).fail(function(error,status,statusText){
+                                console.log(error);
+                                console.log(status);
+                                console.log(statusText);
+                           });
+                        }
+                   }
+                   
+                }
+            });
+            //--Al darle like en el btn_like se registrará un like al post
+            $("#btn_like").click(function(){
+                
+                $.ajax({
+                    url:'/like/setLikes/all',
+                    method:'POST',
+                    dataType:"JSON",
+                    cache:false
+                }).done(function(response){
+                    console.log(response);
+                    if($.isArray(response)){
+                        $("#like").addClass("badge green");
+                        $("#like").removeAttr("hidden");
+                        $("#like").text(response[0].total);
+                    }
+                }).fail(function(error,status,statusText){
+                    console.log(error);
+                    console.log(status);
+                    console.log(statusText);
+                });
+            });
+
+            //--Al dar click en comentar se registra el comentario para el post
+            $("#comentar,#comentar-lg").click(function(){
+
+                $.ajax({
+                    url:'/comentario/save/save-comment',
+                    method:'POST',
+                    dataType:'JSON',
+                    cache:false,
+                    data:{contenido:$("#comentario").val()}
+                }).done(function(response){
+                    $("#comentario").val('');
+                    getComment();
+                }).fail(function(error,status,statusText){
+                    console.log(error);
+                    console.log(status);
+                    console.log(statusText);
+                });
+            });
+
+            
+            moment().calendar('es', {
+                sameDay: '[Hoy]',
+                nextDay: '[Mañana]',
+                nextWeek: 'dddd',
+                lastDay: '[Ayer]',
+                lastWeek: '[Last] dddd',
+                sameElse: 'DD/MM/YYYY'
+            });
+            document.getElementById("pruebas").innerHTML = " "+moment("07-03-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
+            document.getElementById("pruebas1").innerHTML = " "+moment("15-02-2016 18:00:01","DDMMYYYY , h:mm:ss a").fromNow();
+            document.getElementById("pruebas2").innerHTML = " "+moment("08-03-2016 00:14:10","DDMMYYYY , h:mm:ss a").fromNow();
+    }
 </script>
 {%endblock%}

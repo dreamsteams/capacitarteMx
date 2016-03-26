@@ -1,3 +1,4 @@
+/*Created by Gerson Isaias*/
 var elemento ={
         clase:this.class,
         create:function($tag){
@@ -42,6 +43,27 @@ var elemento ={
                     "<h5 id='title_post_"+this.id+"'>"+this.titulo+"</h5>"+
                   "</div>"+
                 "</div>";
+            }
+        },
+        Comment:{
+            id:this.id,
+            contenido:this.contenido,
+            total:this.total,
+            srcImage:this.srcImage,
+            fecha:this.fecha,
+            nombre_completo:this.nombre_completo,
+            create:function(){
+                return "<div class=\"comments row\" data-id-comment="+this.id+">"+
+                            "<hr class=\"col-md-12\">"+
+                               "<div class=\"col-sm-2\">"+
+                                    "<img src="+this.srcImage+" style=\"width:4.5em; height:4.5em;\" class=\"img-responsive z-depth-1\" >"+
+                               "</div>"+
+                            "<div class=\"col-md-9\">"+
+                               "<h6>"+this.nombre_completo+"</h6>"+
+                               "<p class=\"text-justify\">"+this.contenido+"</p>"+
+                                "<span class=\"text-right\">&nbsp;&nbsp; <i class=\"fa fa-clock-o\">"+this.fecha+"</i></span>"+
+                             "</div>"+
+                        "</div>";
             }
         }
 }

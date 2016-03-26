@@ -7,11 +7,48 @@ class Comentario {
     public function __contruct(){
 
     }
-    public static function show(){
+    public  function show($post_id=0,$start=0,$limit=5){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $posts=$datos->Select("Select * from comentarios");
-        echo $posts;
+        $max= $datos->Select("Select max(id) as 'max' from  comentarios");
+        
+                if($start == 0){
+                    $posts=$datos->SelectJson("Select comentarios.id,comentarios.contenido,
+                    comentarios.created_at AS 'fecha',
+                    concat(usuarios.nombre,' ',usuarios.apellido_paterno,' ',usuarios.apellido_materno) AS 'nombre_completo',
+                    concat('/',imagenes.ruta) AS 'src_imagen_perfil' 
+                    from comentarios inner join usuarios on comentarios.usuarios_id = usuarios.id 
+                    inner join imagenes on imagenes.id = usuarios.foto_perfil 
+                    inner join posts on posts.id = comentarios.posts_id 
+                    where posts.id = '$post_id' 
+                    order by(comentarios.id) 
+                    asc LIMIT $limit");
+                }
+                else{
+                    if($max){
+                        if(($max[0]['max']) != $start)
+                        {
+                        
+                           $posts=$datos->SelectJson("Select comentarios.id,comentarios.contenido,
+                            comentarios.created_at AS 'fecha',
+                            concat(usuarios.nombre,' ',usuarios.apellido_paterno,' ',usuarios.apellido_materno) AS 'nombre_completo',
+                            concat('/',imagenes.ruta) AS 'src_imagen_perfil' 
+                            from comentarios inner join usuarios on comentarios.usuarios_id = usuarios.id 
+                            inner join imagenes on imagenes.id = usuarios.foto_perfil 
+                            inner join posts on posts.id = comentarios.posts_id 
+                            where posts.id = '$post_id' 
+                            order by(comentarios.id) 
+                            asc LIMIT $start,$limit"); 
+                        }
+                        else{
+                            echo json_encode(array('message'=>$start, "max"=>$max[0]));
+                        }
+
+                    }
+                }
+                echo $posts;
+        
+        
     }
     public function save(){
         $datos = new PDO\Datos();

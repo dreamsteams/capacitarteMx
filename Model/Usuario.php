@@ -1,15 +1,6 @@
 <?php namespace Model;
 class Usuario {
-<<<<<<< HEAD
-    private $nombre;
-    private $apellido_paterno;
-    private $apellido_materno;
-    private $email;
-    private $password;
-    private $codigo_usuario;
-    private $activo;
-    private $rol_id;
-=======
+    public $id;
     public $nombre;
     public $apellido_paterno;
     public $apellido_materno;
@@ -18,7 +9,9 @@ class Usuario {
     public $codigo_usuario;
     public $activo;
     public $rol_id;
->>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
+    public $foto_perfil;
+    public $foto_portada;
+    
     public function __contruct(){
 
     }
@@ -33,7 +26,7 @@ class Usuario {
     public function save(){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $datos->Insert("INSERT INTO usuarios VALUES(NULL,'$this->nombre','$this->apellido_paterno','$this->apellido_materno','$this->email','$this->password','$this->codigo_usuario','$this->activo','$this->rol_id')");
+        $datos->Insert("INSERT INTO usuarios VALUES(NULL,'$this->nombre','$this->apellido_paterno','$this->apellido_materno','$this->email','$this->password','$this->codigo_usuario','$this->activo','$this->rol_id','$this->foto_perfil','$this->foto_portada')");
         $datos->Desconectar();
     }
     public function update($id = 0){
@@ -59,13 +52,14 @@ class Usuario {
         $datos = new PDO\Datos();
         try {
             $datos->Conectar();
-            $posts=$datos->Select("Select usuarios.nombre,usuarios.apellido_paterno,usuarios.apellido_materno,usuarios.email,usuarios.password,usuarios.codigo_usuario,rol.nombre as 'Rol' from usuarios inner join rol on rol.id = usuarios.rol_id where email = '$user' && password= '$pwd' ");
+            $posts=$datos->Select("Select usuarios.id,usuarios.nombre,usuarios.apellido_paterno,usuarios.apellido_materno,usuarios.email,usuarios.password,usuarios.codigo_usuario,rol.nombre as 'Rol' from usuarios inner join rol on rol.id = usuarios.rol_id where email = '$user' && password= '$pwd' ");
             $datos->Desconectar();
         } catch (Exception $e) {
             echo $e;
         }
 
         if($posts){
+            $this->id=$posts[0]['id'];
             $this->nombre = $posts[0]['nombre'];
             $this->apellido_paterno = $posts[0]['apellido_paterno'];
             $this->apellido_materno = $posts[0]['apellido_materno'];
@@ -81,6 +75,7 @@ class Usuario {
     }
     public function generarObjUser(){
         session_start();
+        $_SESSION['id']=$this->id;
         $_SESSION['nombre'] = $this->nombre;
         $_SESSION['apellido_paterno'] = $this->apellido_paterno;
         $_SESSION['apellido_materno'] = $this->apellido_materno;

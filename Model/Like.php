@@ -18,18 +18,25 @@ class Like{
         $datos->Insert("INSERT INTO likes VALUES(NULL,'$this->posts_id','$this->usuarios_id','$this->enabled')");
         $datos->Desconectar();
     }
-    public function disabled($id = 0){
+    public function delete($id = 0,$idUser = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $datos->Update("UPDATE likes SET enabled = '$this->enabled' where id = '$id'");
+        $datos->Update("Delete from  likes where posts_id = '$id' and usuarios_id = '$idUser'");
         $datos->Desconectar();
     }
-    public function find($id = 0, $idUser = 0){
+    public function find($id = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $query=$datos->SelectJson("Select count(id) as 'total' from likes where posts_id='$id' and usuarios_id = '$idUser'");
+        $query=$datos->SelectJson("Select count(id) as 'total' from likes where posts_id='$id'");
         $datos->Desconectar();
         echo $query;
+    }
+    public function hasLike($id = 0, $idUser = 0){
+        $datos = new PDO\Datos();
+        $datos->Conectar();
+        $query=$datos->Select("Select count(id) as 'total' from likes where posts_id='$id' and usuarios_id = '$idUser'");
+        $datos->Desconectar();
+        return $query[0]["total"];
     }
 
 }

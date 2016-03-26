@@ -24,7 +24,25 @@ class comentarioController extends BaseController {
 
     public function show(){
         $comentario = new \Model\Comentario();
-        $comentario->show();
+        session_start();
+        if($_SESSION['idPost'])
+            $comentario->show($_SESSION['idPost']);
+        else 
+            echo false;
+    }
+    public function showMore(){
+        $comentario = new \Model\Comentario();
+        session_start();
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            extract($_POST);
+            if($_SESSION['idPost'])
+                $comentario->show($_SESSION['idPost'],$start,$limit);
+            else 
+                echo false;
+        }
+        else{
+            print_r($_POST);
+        }
     }
     public function save(){
         extract($_POST);
@@ -33,11 +51,10 @@ class comentarioController extends BaseController {
         $comentario = new \Model\Comentario();
         $comentario->contenido = $contenido;
         $comentario->posts_id = $idPost['id'];
-        $comentario->usuarios_id= 1;
+        $comentario->usuarios_id= $_SESSION['id'];
         $comentario->enabled = 1;
-        //print_r($comentario);
         $comentario->save();
-        echo 1;
+        echo json_encode(array("message"=>"success"));
     }
-
 }
+   

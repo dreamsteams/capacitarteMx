@@ -48,7 +48,6 @@
       </div>
     </div>
   </nav>
-
   <section class="alturaTop" id="inicio">
 		<div class="conatiner">
 			<div class="col-md-5">

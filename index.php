@@ -30,15 +30,5 @@
         Routing::run(new Request());
 
 
-        /*error_reporting(E_ALL ^ E_NOTICE);
-        ini_set('display_errors', '1');
-
-        require_once 'vendor/autoload.php';
-
-        $loader = new Twig_Loader_Filesystem('View/');
-        $twig = new Twig_Environment($loader);
-
-        echo $twig->render('Post.php');*/
-
 
 ?>

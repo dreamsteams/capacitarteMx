@@ -30,12 +30,12 @@ class usuarioController extends BaseController {
             $usuario->apellido_paterno = $apellido_paterno;
             $usuario->apellido_materno = $apellido_materno;
             $usuario->email = $email;
-            $usuario->password = $password;
+            $usuario->password = md5($password);
             $usuario->codigo_usuario = md5($nombre.$apellido_paterno.$apellido_materno);
             $usuario->activo = 1;
             $usuario->rol_id = 2;
-            $usuario->foto_perfil = 28;
-            $usuario->foto_portada = 28;
+            $usuario->foto_perfil = 1;
+            $usuario->foto_portada = 1;
             $usuario->save();
             echo json_encode(array('message'=>'El usuario se ha reistrado'));
             

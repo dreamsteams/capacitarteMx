@@ -22,16 +22,9 @@ class Request{
         }
         else{
             require_once __DIR__.'/vendor/autoload.php';
-
                 $loader = new Twig_Loader_Filesystem(__DIR__.'/View/');
-                $twig = new Twig_Environment($loader);
-            if(!$_SESSION['role']){
-
-                echo $twig->render('principal.php');
-            }
-            else{
-               echo $twig->render('login.php');
-            }
+               $twig = new Twig_Environment($loader);
+            echo $twig->render('principal.php');
         }
     }
 

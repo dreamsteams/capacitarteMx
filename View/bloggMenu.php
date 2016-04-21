@@ -8,12 +8,12 @@
   <div class="container-fluid" id="contenidoBlog">
 
     <div class="pagePosts">
-      <div class="row">
+      <!---<div class="row">
         <div class="col-md-3 col-md-offset-6 text-right">
-          <label for="">Buscar Post</label>
-          <input type="text" name="name" value="" placeholder="Titulo de Post" class="form-control">
+          <label for="">Buscar Curso</label>
+          <input type="text" name="name" value="" placeholder="Titulo del Curso" class="form-control">
         </div>
-      </div>
+      </div>--->
 
       <div class="row" id="contPost">
 
@@ -23,7 +23,7 @@
               <div>
                 <label><span class="fa fa-plus"></span></label>
               </div>
-              <h4><b>Añadir Post</b></h4>
+              <h4><b>Añadir Curso</b></h4>
             </center>
           </div>
         </div>
@@ -37,8 +37,16 @@
 
     <div class="pageAdd" hidden="hidden">
         <div class="form-group">
-          <label for="">Titulo del post</label>
+          <label for="">Titulo del curso</label>
           <input type="text" name="titulo" class="form-control" id="titulo">
+        </div>
+        <div class="form-group">
+          <label for="">Fecha Inicio <label>
+          <input type="date" name="fecha_inicio" class="form-control" id="fecha_inicio">
+        </div>
+        <div class="form-group">
+          <label for="">Fecha Fin <label>
+          <input type="date" name="fecha_fin" class="form-control" id="fecha_fin">
         </div>
         <div class="form-group">
           <label for="">Contenido</label>
@@ -77,12 +85,12 @@
  <script type="text/javascript" src="/assets/js/js/Create.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-        var idPost;
+        var idCurso;
 
       $(".posters").on('click','button[name=btn-view]',function(event) {
           var $element = this;
          $.ajax({
-             url:'/post/setIdPost/buscarPost',
+             url:'/curso/setIdCurso/buscarPost',
              type:'JSON',
              method:'POST',
              data:{id:$($element).attr('data-id-post')}
@@ -124,10 +132,13 @@
         });
         $("#send").click(function(){
              var formData = new FormData($("#frm_post")[0]);
-                formData.append('titulo',$("#titulo").val());
-                formData.append('contenido',$("#content").val());
+                formData.append('nombre',$("#titulo").val());
+                formData.append('descripcion',$("#content").val());
+                  formData.append('fecha_inicio',$("#fecha_inicio").val());
+                  formData.append('fecha_fin',$("#fecha_fin").val());
+
                  $.ajax({
-                    url:'/post/save/guardar-post',
+                    url:'/curso/save/guardar-curso',
                     method:'POST',
                     dataType:'JSON',
                     cache: false,
@@ -135,12 +146,12 @@
                     processData: false,
                     data:formData,
                     beforeSend: function(){
-                            alertify.log("El post se esta publicando");
+                            alertify.log("El curso se esta guardando");
                     },
                 }).done(function(response){
 
-                    alertify.success("El post se publico con exito");
-                    window.location="/blog/show/all"
+                    alertify.success("El curso se guardo con exito");
+                    //window.location="/blog/show/all";
 
                 }).fail(function(error,status,statusText){
                     console.log(status);
@@ -153,30 +164,33 @@
 
         function cargarPosts(){
             $.ajax({
-                url:'/post/showMe/post-actuales',
+                url:'/curso/showMe/cursos-actuales',
                 method:'POST',
                 dataType:"JSON",
                 cache:false
             }).done(function(response){
+                 console.log(response);
                 $(".pagePosts > #contPost .posters").empty();
                 $.each(response,function(index,object){
                     console.log(object);
-                    elemento.Post.id=object.id;
-                    elemento.Post.titulo=object.titulo;
-                    elemento.Post.contenido=(object.contenido);
-                    console.log(object.contenido);
-                    elemento.Post.srcImage="/"+object.src;
-                    $(".pagePosts > #contPost .posters").append(elemento.Post.create());
+                    elemento.Curso.id=object.id;
+                    elemento.Curso.nombre=object.nombre;
+                    elemento.Curso.descripcion=(object.descripcion);
+                    elemento.Curso.ruta="/"+object.src;
+                    elemento.Curso.fecha_inicio= object.created_at;
+                    elemento.Curso.fecha_fin= object.fecha_fin;
+                    $(".pagePosts > #contPost .posters").append(elemento.Curso.create());
                 });
             }).fail(function(error,status,statusText){
-                alertify.error(error);
+                console.log(error);
+                alertify.error(error.responseText.error);
                 console.log(status);
                 console.log(statusText);
             });
         }
         $(".pagePosts > #contPost .posters").on("click","button[name=btn-disabled]",function(){
             $.ajax({
-                url:'/post/disabled/deshabilitar-post',
+                url:'/curso/disabled/deshabilitar-post',
                 method:'POST',
                 dataType:'JSON',
                 data:{id:$(this).attr('data-id-post')},
@@ -192,23 +206,28 @@
             });
         });
         $(".pagePosts > #contPost .posters").on("click","button[name=btn-refresh]",function(){
-            idPost = $(this).attr('data-id-post');
-            $("#titulo").val($(".posters #title_post_"+idPost).text());
-            $("#content").val($(".posters #content_post_"+idPost).attr('title').replace("Comentario:",""));
+            idCurso = $(this).attr('data-id-post');
+            console.log($(this));
+            $("#titulo").val($(".posters #title_post_"+idCurso).text());
+            $("#content").val($(".posters #content_post_"+idCurso).attr('title').replace("Comentario:",""));
             $("#send").attr('hidden','hidden');
+            $("#fecha_inicio").val(moment(fecha_inicio).format('YYYY-MM-DD'));
+            $("#fecha_fin").val(moment(fecha_fin).format('YYYY-MM-DD'));
             $("#update").removeAttr('hidden');
             $(".pagePosts").fadeOut('slow');
             $(".pageAdd").removeAttr('hidden');
 
         });
         $("#update").click(function(){
-            idPost = $(this).attr('data-id-post');
+            console.log(idCurso);
             var formData = new FormData($("#frm_post")[0]);
-                formData.append('titulo',$("#titulo").val());
-                formData.append('contenido',$("#content").val());
-                formData.append('id',idPost);
+                formData.append('nombre',$("#titulo").val());
+                formData.append('descripcion',$("#content").val());
+                formData.append('fecha_inicio',$("#fecha_inicio").val());
+                formData.append('fecha_fin',$("#fecha_fin").val());
+                formData.append('id',idCurso);
                  $.ajax({
-                    url:'/post/update/update-post',
+                    url:'/curso/update/update-curso',
                     method:'POST',
                     dataType:'JSON',
                     cache: false,
@@ -217,8 +236,7 @@
                     data:formData,
                 }).done(function(response){
 
-                    alertify.success("Se actualizo el post con exito");
-                    window.location="/blog/show/all"
+                    alertify.success("Se actualizo el curso con exito");
 
                 }).fail(function(error,status,statusText){
                     console.log(status);
@@ -229,3 +247,4 @@
     });
   </script>
 {%endblock%}
+

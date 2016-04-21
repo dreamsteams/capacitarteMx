@@ -18,19 +18,18 @@ var elemento ={
             }
 
         },
-        Post:{
+        Curso:{
             id:this.id,
             contenido:this.contenido,
-            titulo:this.titulo,
-            srcImage:this.srcImage,
+            nombre:this.titulo,
+            fecha_inicio:this.fecha_inicio,
+            fecha_fin:this.fecha_fin,
+            ruta:this.ruta,
             create:function(){
-                return "<div class=\"col-xs-6 push-post col-md-4\" data-id-post="+this.id+">"+
+                return  "<div class=\"col-xs-6 push-post col-md-4\" data-id-post="+this.id+" data-fecha-inicio="+this.fecha_inicio+">"+
                   "<div class=\"col-xs-12 text-right\">"+
                     "<div class=\"actionButtons\">"+
-                      "<button type=\"button\" name=\"btn-view\" data-id-post="+this.id+" style=\"margin-right:-3px;\" class=\"btn btn-success btn-fab btnDelPost\">"+
-                        "<span class=\"fa fa-eye\"></span>"+
-                      "</button>"+
-                      "<button type=\"button\" name=\"btn-refresh\" data-id-post="+this.id+" class=\"btn btn-info btn-fab btnUpdatePost\">"+
+                      "<button type=\"button\" name=\"btn-refresh\" data-id-post="+this.id+" data-fecha-inicio="+this.fecha_inicio+" data-fecha-fin="+this.fecha_fin+" class=\"btn btn-info btn-fab btnUpdatePost\">"+
                         "<span class=\"fa fa-refresh\"></span>"+
                       "</button>"+
                       "<button type=\"button\" name=\"btn-disabled\" data-id-post="+this.id+" class=\"btn btn-danger btn-fab btnDelPost\">"+
@@ -38,32 +37,29 @@ var elemento ={
                       "</button>"+
                     "</div>"+
                   "</div>"+
-                  "<div class=\"card-post text-center\" id='content_post_"+this.id+"' title='Comentario:"+this.contenido+"'>"+
-                   "<img src="+this.srcImage+" alt=\"Imagen del post\" class=\"img-responsive\">"+
-                    "<h5 id='title_post_"+this.id+"'>"+this.titulo+"</h5>"+
+                  "<div class=\"card-post text-center\" id='content_post_"+this.id+"' title='Comentario:"+this.descripcion+"'>"+
+                   "<img src="+this.ruta+" alt=\"Imagen del post\" class=\"img-responsive\">"+
+                    "<h5 id='title_post_"+this.id+"'>"+this.nombre+"</h5>"+
+                    "<p id='fecha_inicio_"+this.id+"'>Fecha de inicio: "+moment(this.fecha_inicio,"DDMMYYYY").fromNow()+"</p>"+
                   "</div>"+
                 "</div>";
-            }
-        },
-        Comment:{
-            id:this.id,
-            contenido:this.contenido,
-            total:this.total,
-            srcImage:this.srcImage,
-            fecha:this.fecha,
-            nombre_completo:this.nombre_completo,
-            create:function(){
-                return "<div class=\"comments row\" data-id-comment="+this.id+">"+
-                            "<hr class=\"col-md-12\">"+
-                               "<div class=\"col-sm-2\">"+
-                                    "<img src="+this.srcImage+" style=\"width:4.5em; height:4.5em;\" class=\"img-responsive z-depth-1\" >"+
-                               "</div>"+
-                            "<div class=\"col-md-9\">"+
-                               "<h6>"+this.nombre_completo+"</h6>"+
-                               "<p class=\"text-justify\">"+this.contenido+"</p>"+
-                                "<span class=\"text-right\">&nbsp;&nbsp; <i class=\"fa fa-clock-o\">"+this.fecha+"</i></span>"+
-                             "</div>"+
-                        "</div>";
+            },
+            crateMin:function(){
+                 return   "<a>"+
+                                "<div class='row hoverable'>"+
+                                    "<div class='col-sm-4'>"+
+                                        "<img src="+this.ruta+" class='img-responsive z-depth-4'/>"+
+                                    "</div>"+
+                                    "<div class='col-sm-8'>"+
+                                        "<h5 class='title'>"+this.nombre+"</h5>"+
+                                        "<ul class='list-inline iteitem-details'>"+
+                                            "<li>"+
+                                                "<i class='fa fa-clock-o'>"+moment(this.fecha_inicio,"YYYYMMDD").fromNow()+"</i>"+
+                                            "</li>"+
+                                        "</ul>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</a>";
             }
         }
 }

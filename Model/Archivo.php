@@ -1,13 +1,9 @@
 <?php namespace Model;
-<<<<<<< HEAD
 class Archivo{
-=======
-class Archivo {
->>>>>>> 8cbcca8cd9238c4a86cf0960998c60d9ed2800a3
-    private $contenido;
-    private $posts_id;
-    private $usuarios_id;
-    private $enabled;
+    public $contenido;
+    public $posts_id;
+    public $usuarios_id;
+    public $enabled;
     public function __contruct(){
 
     }
@@ -38,8 +34,14 @@ class Archivo {
     public function find($id = 0){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $query=$datos->SelectJson("Select * from archivos where id = '$id'");
+        if($id != 0){
+            $query=$datos->Select("Select * from archivos where id = $id");
+        }
+        else{
+            $query=$datos->Select("Select max(id) AS 'Last', min(id) AS 'First' from archivos");
+        }
         $datos->Desconectar();
         return $query;
+
     }
 }

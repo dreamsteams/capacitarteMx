@@ -366,9 +366,13 @@ class Twig_Environment
         $this->setLoader($loader);
         try {
             $template = $this->loadTemplate($name);
-        } finally {
-            $this->setLoader($current);
+        } catch(Exception $ex){
+            echo $ex;
         }
+        //Falla este finally en el sistema
+        /*finally{
+            $this->setLoader($current);
+        }*/
 
         return $template;
     }

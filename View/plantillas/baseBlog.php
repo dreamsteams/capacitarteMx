@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <!-- META -->
-    <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- FIN META -->
     <title>{% block title %}{%endblock%}</title>
@@ -33,18 +31,12 @@
                 <a href="/blog/show/all">
                    &nbsp;
                    <i class="fa fa-home"></i>
-                   <span>Blog</span>
+                   <span>Cursos</span>
                  </a>
                  &nbsp;
                  <i class="fa fa-chevron-right"></i>
              </li>
-             <li class="active">
-                <a>
-                   &nbsp;
-                   <i class="fa fa-commenting"></i>
-                   <span>Post</span>
-                 </a>
-             </li>
+
          </ul>
     </header>
 
@@ -81,9 +73,9 @@
           </li>
           <li class="active">
               <a>
-                  <i class="fa fa-comments"></i>
+                  <i class="fa fa-book"></i>
                   &nbsp;&nbsp;
-                  <span>Blog</span>
+                  <span>Gestion Cursos</span>
               </a>
           </li>
           <li>

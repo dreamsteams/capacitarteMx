@@ -32,7 +32,7 @@ class loginController extends BaseController {
 
        ------------------------*/
         extract($_POST);
-        $usuario = new \Model\usuario();
+        $usuario = new \Model\Usuario();
         if($usuario->attempt($username,$password)){
             //En caso de que los datos esten bien
             //echo "Los datos estan bien";

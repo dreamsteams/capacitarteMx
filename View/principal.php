@@ -145,83 +145,15 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-right" id="btns">
-            <button type="button" class="btn btn-success btn-lg galleryActive wow fadeInDown" data-wow-delay="0.2s" id="btn-all">
+            <button type='button' class='btn btn-success btn-lg galleryActive wow fadeInDown' data-wow-delay='0.2s' id='btn-all'>
               TODO
-            </button>
-            <button type="button" class="btn btn-cap btn-lg wow fadeInDown" data-wow-delay="0.5s" id="btn-rojo">
-              SECCION 1
-            </button>
-            <button type="button" class="btn btn-success btn-lg wow fadeInDown" data-wow-delay="0.8s" id="btn-azul">
-              SECCION 2
-            </button>
-            <button type="button" class="btn btn-success btn-lg wow fadeInDown" data-wow-delay="1s" id="btn-verde">
-              SECCION 3
             </button>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="2s">
-          <div class="col-xs-4 col-md-3 divp1">
-            <div class="p">
-              <img src="assets/images/galeria/1.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3 divp1">
-            <div class="p">
-              <img src="assets/images/galeria/2.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3 divp1">
-            <div class="p">
-              <img src="assets/images/galeria/3.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3 divp1">
-            <div class="p">
-              <img src="assets/images/galeria/4.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3 divp2">
-            <div class="p">
-              <img src="assets/images/galeria/5.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp2">
-            <div class="p">
-              <img src="assets/images/galeria/6.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/7.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/8.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/9.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/10.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/11.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
-          <div class="col-xs-4 col-md-3  divp3">
-            <div class="p">
-              <img src="assets/images/galeria/12.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-          </div>
+        <div class="col-md-12 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="2s" id="gpoGaleria">
+          
         </div>
       </div>
     </div>
@@ -492,6 +424,6 @@
   <!-- script web -->
   <script src="assets/js/capacitarte.js" charset="utf-8"></script>
   <script src="assets/js/scrolling.js"></script>
-  <script src="/assets/js/galleryEfect.min.js" charset="utf-8"></script>
+  <script src="/assets/js/js/galleryEfect.js" charset="utf-8"></script>
 </body>
 </html>

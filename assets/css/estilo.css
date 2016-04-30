@@ -165,7 +165,7 @@ hr{
 }
 
 #btns > button, .btn-cap{
-  width: 150px;
+  min-width: 150px;
   margin-bottom: 30px;
   margin-right: 10px;
   background-color: transparent;

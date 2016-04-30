@@ -85,6 +85,13 @@
                   <span>Cursos</span>
               </a>
           </li>
+          <li>
+              <a href="/portafolio/show/gestion">
+                  <i class="fa fa-gear"></i>
+                  &nbsp;&nbsp;
+                  <span>Gestión Portafolio</span>
+              </a>
+          </li>
           <li class="toggle-menu" hidden="hidden">
 
                     <a>
@@ -231,9 +238,9 @@
     <script type="text/javascript" src="/assets/js/alertify.js"></script>
     <script type="text/javascript">
        $(document).on('ready',__init);
-        
+
         function __init(){
-            
+
              /*---------------------------------
              | Primera validación del form para
              | datos personales
@@ -258,18 +265,18 @@
                      }
                  }
              });
-            
-            
-            
-            
+
+
+
+
             //-----------------------------------
                 //------ CLOUSHURES -----------
             //----------------------------------
             $("#register_user").click(function(){
                 $("#modal_register_user").modal('show');
             });
-            
-            
+
+
              $("#reg_user").click(function(){
                    var $btn = this;
                    if($("#frm_data_person").valid()){
@@ -287,8 +294,8 @@
                        });
                    }
             });
-            
-                
+
+
             $("#close_modal").click(function(){
                 $("#profile").attr('disabled',true);
                 $("#data_person").trigger('click');
@@ -296,10 +303,10 @@
                 $("#frm_profile").trigger('reset');
                 $("#modal_register_user").modal('hide');
             });
-            
-            
+
+
         }
-    
+
     </script>
 
     {% block js %}{% endblock%}

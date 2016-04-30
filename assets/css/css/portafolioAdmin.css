@@ -1,0 +1,72 @@
+#cuerpo{
+  padding-left: 250px;
+  padding-right: 20px;
+}
+
+.img-box{
+  margin-top: 30px;  
+}
+
+.seccionPortafolio{
+  background-color: rgb(226, 226, 226);
+  border: solid 2px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+.section_name{
+  margin-left: 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.remove-btn{
+  background-color: rgb(232, 46, 46);
+  color: white;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  padding-top: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.6;
+  position: absolute;
+  margin-left: 70%;
+  margin-top: 5%;
+}
+
+.remove-btn:hover{
+  opacity: 1;
+  transition: .4s;
+}
+
+.btnAddImagen{
+  position: absolute;
+  margin-left: 70%;
+  margin-top: -40px;
+}
+
+.adminBtns{
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+  opacity: 0.6;
+}
+
+.adminBtns:hover{
+  opacity: 1;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.adminBtnsRefresh{
+  background-color: rgb(15, 101, 171);
+}
+
+.adminBtnsDelete{
+  background-color: rgb(233, 51, 51)
+}

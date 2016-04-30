@@ -23,7 +23,7 @@
               <div>
                 <label><span class="fa fa-plus"></span></label>
               </div>
-              <h4><b>A«Ğadir Curso</b></h4>
+              <h4><b>AÃ±adir Curso</b></h4>
             </center>
           </div>
         </div>

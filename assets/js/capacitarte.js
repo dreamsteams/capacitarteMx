@@ -4,4 +4,5 @@ $(document).ready(function() {
     offset: 100
   });
   wow.init();
+
 });

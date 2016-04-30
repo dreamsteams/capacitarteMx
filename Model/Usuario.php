@@ -18,9 +18,9 @@ class Usuario {
     public static function show(){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $posts=$datos->Select("Select * from usuarios");
+        $posts=$datos->Select("Select id,nombre,apellido_paterno,apellido_materno from usuarios where rol_id = (Select id from rol where nombre = 'general')");
         $datos->Desconectar();
-        return $posts;
+        echo json_encode($posts);
     }
 
     public function save(){

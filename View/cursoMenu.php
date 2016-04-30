@@ -29,7 +29,7 @@
         </div>
         <div class="posters">
 
-        <!-- ./Aqui se iran añadiendo los posts dinamicamente --->
+        <!-- ./Aqui se iran añadiendo los posts dinamicamente -->
         </div>
 
       </div>

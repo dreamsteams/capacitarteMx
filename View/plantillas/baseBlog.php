@@ -1,6 +1,8 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+<head><meta http-equiv="Content-Type" content="text/html;">
+   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- FIN META -->
     <title>{% block title %}{%endblock%}</title>
@@ -52,18 +54,19 @@
           <img src="/assets/images/image-perfil/avatar04.png"  class="img-circle img-responsive" alt="">
           <div class="mask">
               <div class="verticalcenter">
-                  <p class="white-text text-center">Usuario<br>roger23@live.com</p>
+                  <p class="white-text text-center">Usuario<br>{{ session['nombre'] }}</p>
               </div>
           </div>
       </div>
       <ul class="navbar-left-list">
           <li>
-              <a>
-                  <i class="fa fa-user"></i>
+              <a href="/">
+                  <i class="fa fa-home"></i>
                   &nbsp;&nbsp;
-                  <span>Perfil</span>
+                  <span>Inicio</span>
               </a>
           </li>
+         {% if role == 'administrador'  %}
           <li id="register_user">
               <a>
                   <i class="fa fa-users"></i>
@@ -71,18 +74,11 @@
                   <span>Registro</span>
               </a>
           </li>
-          <li class="active">
+          <li id="user_assigned">
               <a>
-                  <i class="fa fa-book"></i>
+                  <i class="fa fa-cubes"></i>
                   &nbsp;&nbsp;
-                  <span>Gestion Cursos</span>
-              </a>
-          </li>
-          <li>
-              <a>
-                  <i class="fa fa-book"></i>
-                  &nbsp;&nbsp;
-                  <span>Cursos</span>
+                  <span>Asignar Curso</span>
               </a>
           </li>
           <li>
@@ -92,13 +88,27 @@
                   <span>Gestión Portafolio</span>
               </a>
           </li>
+          {% endif %}
+          <li>
+              <a href="blog/show/cursos">
+                  <i class="fa fa-book"></i>
+                  &nbsp;&nbsp;
+                  <span>Cursos</span>
+              </a>
+          </li>          
           <li class="toggle-menu" hidden="hidden">
-
-                    <a>
-                        <i class="fa fa-paint-brush"></i>
-                        <span>Temas</span>
-                        <i class="fa fa-chevron-left"></i>
-                    </a>
+              <a href="/login/logout/cerrar-sesion">
+                  <i class="fa fa-reply"></i>
+                  &nbsp;&nbsp;
+                  <span>Salir</span>
+              </a>
+          </li>
+          <li class="toggle-menu" >
+              <a>
+                  <i class="fa fa-paint-brush"></i>
+                  <span>Temas</span>
+                  <i class="fa fa-chevron-left"></i>
+              </a>
           </li>
                 <ul class="navbar-left-sublist">
                        <li>
@@ -152,20 +162,13 @@
                             </a>
                         </li>
                     </ul>
-          <li>
-              <a href="/">
-                  <i class="fa fa-reply"></i>
-                  &nbsp;&nbsp;
-                  <span>Salir</span>
-              </a>
-          </li>
       </ul>
   </aside>
   <div id="mask"></div>
   <div class="container-fluid" id="contenido">
       {%block contenido%} {% endblock %}
   </div>
-  <!-- Modal -->
+  <!-- Modal Registro usuario -->
     <div class="modal fade" id="modal_register_user" tabindex="-1" role="dialog" aria-labelledby="" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -206,11 +209,37 @@
             </div>
          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-action="save" id="reg_user">Siguiente</button>
+            <button type="button" class="btn btn-primary" data-action="save" id="reg_user">Registrar</button>
           </div>
         </div>
       </div>
     </div>
+    <!--Fin de modal de registro-->
+    <!--Modal de asignación de cursos-->
+    <div class="modal fade" id="modal_assigned_user" tabindex="-1" role="dialog" aria-labelledby="" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" id="close_modal_assigned" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Registro de Usuario</h4>
+          </div>
+          <div class="modal-body">
+              <select id="users" class="form-control">
+                  <!---Se llenara dinamicamente -->
+              </select>
+              <br><br>
+              <div class="row">
+                  <div id="cursos" class="col-md-12">
+                  </div>
+              </div>
+         </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-action="save" id="reg_user"><i class="fa fa-save"></i> Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="preview-template" style="display: none;">
 {%endblock%}
 
       <!-- Zona de Contenido general -->
@@ -269,6 +298,41 @@
 
 
 
+
+            cargarUsuariosAssigned();
+            function cargarUsuariosAssigned(){
+                $.ajax({
+                    url:'/usuario/mostrar/mostrar-usuarios',
+                    method:'POST',
+                    dataType:'JSON'
+                }).done(function(response){
+                    $.each(response,function(i,objeto){
+                        var $opt = $("<option/>").val(objeto.id).text(objeto.nombre+' '+objeto.apellido_paterno);
+                        $("#users").append($opt);
+                    });
+                }).fail(function(error){
+                    console.log(error);
+                });
+            }
+            cargarCursos();
+            function cargarCursos(){
+                $.ajax({
+                    url:'/curso/showMe/mostrar-cursos',
+                    method:'POST',
+                    dataType:'JSON'
+                }).done(function(response){
+                    var checkbox = {
+                        create:function(id,label){
+                         return "<input type='checkbox' id="+id+"  /> <label for="+id+">"+label+"</label><br>";
+                        }
+                    }
+                    $.each(response,function(i,objeto){
+                        $("#cursos").append(checkbox.create(objeto.id,objeto.nombre));
+                    });
+                }).fail(function(error){
+                    console.log(error);
+                });
+            }
             //-----------------------------------
                 //------ CLOUSHURES -----------
             //----------------------------------
@@ -277,6 +341,14 @@
             });
 
 
+
+
+            
+            $("#user_assigned").click(function(){
+                $("#modal_assigned_user").modal('show');
+            });
+
+            
              $("#reg_user").click(function(){
                    var $btn = this;
                    if($("#frm_data_person").valid()){
@@ -304,6 +376,15 @@
                 $("#modal_register_user").modal('hide');
             });
 
+
+
+
+            
+            $("#close_modal_assigned").click(function(){
+                $("#modal_assigned_user").modal('hide');
+            });
+
+            
 
         }
 

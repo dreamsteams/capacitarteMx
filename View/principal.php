@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/animate.css">
   <link rel="stylesheet" href="assets/css/estilo.css">
+  <link rel="stylesheet" media="all" href="/assets/css/alertify.core.css">
+  <link rel="stylesheet" media="all" href="/assets/css/alertify.default.css">
 	<!-- estilos para el slider -->
     <!-- Diseño de iconos -->
 		<link rel="stylesheet" type="text/css" href="assets/css/slider/demo.css" />
@@ -44,35 +46,53 @@
           <li id="nav-portafolio"><a href="javascript:void(0)">PORTAFOLIO</a></li>
           <li id="nav-equipo"><a href="javascript:void(0)">NUESTRO EQUIPO</a></li>
           <li id="nav-contacto"><a href="javascript:void(0)">CONTACTO</a></li>
+          {% if nombre == '' %}
+              <li id="login"><a data-toggle="modal" data-target="#modal_login">LOGIN</a></li>
+          {% else %}
+              <li id="login"><a href={{nombre_completo}}>{{nombre}}</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
   <section class="alturaTop" id="inicio">
-		<div class="conatiner">
-			<div class="col-md-5">
-        <div class="well well-lg" id="loginBox">
-          <div class="row">
-            <div class="col-md-12">
-              <form class="form-horizontal" action="login/login/show" method="POST">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="" name="username" placeholder="Usuario">
+        <div class="modal fade" id="modal_login" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Iniciar Sesión</h4>
                 </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" id="" name="password" placeholder="Contraseña">
+                <div class="modal-body">
+                  <form class="form-horizontal" id="frm_login" action="login/login/show" method="POST">
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                          <input type="text" class="form-control" id="" name="username" placeholder="Usuario">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></div>
+                          <input type="password" class="form-control" id="" name="password" placeholder="Contraseña">
+                        </div>
+                    </div>
+                  </form>
                 </div>
-                <div class="text-right">
-                  <button type="submit" id="entrar" class="btn btn-lg btn-primary-custom">
-                    Entrar
-                    &nbsp;
-                    <i class="fa fa-arrow-right"></i>
-                  </button>
+                <div class="modal-footer">
+                  <button type="button" id="entrar" class="btn btn-lg btn-primary-custom">
+                        Entrar
+                        &nbsp;
+                        <i class="fa fa-arrow-right"></i>
+                   </button>
                 </div>
-              </form>
+              </div>
+
             </div>
-          </div>
         </div>
-			</div>
+		<div class="conatiner">
       <div class="col-md-6">
       </div>
 		</div>
@@ -136,6 +156,58 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="row" hidden="hidden" id="cabecera_cursos">
+        <div class="col-xs-4">
+          <hr>
+        </div>
+        <div class="col-xs-4">
+          <h2 id="info2-Titulo">Algunos de nuestros cursos</h2>
+        </div>
+        <div class="col-xs-4">
+          <hr>
+        </div>
+      </div>
+      <div class="row" hidden="hidden" id="body_cursos">
+          <div class="contenedor col-md-4 hide">
+              <div class="carta">
+                  <div class="lado frente" style="background-image: url(assets/images/capacitarte/img.jpg); background-size: 700px,250px; background-repeat: no-repeat; background-position:cover;">
+                      <h2 class="wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="1s"></h2>
+                  </div>
+                  <div class="lado atras">
+                      <h3>Descripción</h3>
+                      <section class="descripcion">
+                      </section>
+                  </div>
+              </div>
+          </div>
+          <div class="contenedor col-md-4 col-md-offset-4 hide">
+              <div class="carta">
+                  <div class="lado frente" style="background-image: url(assets/images/capacitarte/img.jpg); background-size: 700px,250px; background-repeat: no-repeat; background-position:cover;">
+                      <h2 class="wow fadeInDown" data-wow-duration="0.5s" data-wow-delay="1s"></h2>
+                  </div>
+                  <div class="lado atras">
+                      <h3>Descripción</h3>
+                      <section class="descripcion">
+                      </section>
+                  </div>
+              </div>
+          </div>
+          <div class="contenedor col-md-4 hide">
+              <div class="carta">
+                  <div class="lado frente" style="background-image: url(assets/images/capacitarte/img.jpg); background-size: 700px,250px; background-repeat: no-repeat; background-position:cover;">
+                      <h2 class="wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="1s"></h2>
+                  </div>
+                  <div class="lado atras">
+                      <h3>Descripción</h3>
+                      <section class="descripcion">
+                      </section>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+
       </div>
     </div>
   </section>
@@ -416,6 +488,7 @@
   <script src="assets/js/jquery.min.js" charset="utf-8"></script>
   <script src="assets/js/bootstrap.min.js" charset="utf-8"></script>
   <script src="assets/js/wow.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/assets/js/alertify.js"></script>
   <!-- scripts para el slider -->
   <script type="text/javascript" src="assets/js/slider/modernizr.custom.79639.js"></script>
 	<script type="text/javascript" src="assets/js/slider/jquery.ba-cond.min.js"></script>

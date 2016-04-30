@@ -11,7 +11,7 @@
            <div id="loading" class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5"><i class="fa fa-spinner fa-pulse fa-2x"></i></div>
             <div class="col-lg-8">
                 <!--Image Card-->
-                <!---Despliegue de cursos------->
+                <!---Despliegue de cursos -->
             </div><!--fin col-lg-8-->
             <div class="col-lg-4 visible-lg">
                 <div class="widget">

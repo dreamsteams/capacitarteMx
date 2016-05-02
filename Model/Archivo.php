@@ -1,8 +1,8 @@
 <?php namespace Model;
 class Archivo{
-    public $contenido;
-    public $posts_id;
-    public $usuarios_id;
+    public $nombre;
+    public $ext;
+    public $ruta;
     public $enabled;
     public function __contruct(){
 
@@ -35,7 +35,7 @@ class Archivo{
         $datos = new PDO\Datos();
         $datos->Conectar();
         if($id != 0){
-            $query=$datos->Select("Select * from archivos where id = $id");
+            $query=$datos->Select("Select * from archivos where id = '$id'");
         }
         else{
             $query=$datos->Select("Select max(id) AS 'Last', min(id) AS 'First' from archivos");

@@ -21,9 +21,9 @@ class Curso_archivos {
         $datos = new PDO\Datos();
         try{
             $datos->Conectar();
-            $cursos=$datos->Insert("SELECT  archivos.nombre,archivos.ruta FROM cursos_tienen_archivos inner join
-                                    archivos on archivos.id = cursos_tiene_archivos.archivo_id
-                                    WHERE cursos_tienen_archivos.curso_id = $idCurso");
+            $cursos=$datos->SelectJson("SELECT cursos_tienen_archivos.id, archivos.nombre,archivos.ruta FROM cursos_tienen_archivos inner join
+                                    archivos on archivos.id = cursos_tienen_archivos.archivo_id
+                                    WHERE cursos_tienen_archivos.curso_id = '$idCurso'");
             if($cursos)
                 echo json_encode(array('status'=>'200','files'=>$cursos));
         }
@@ -31,6 +31,17 @@ class Curso_archivos {
             echo $ex->getMessage();
         }
 
+    }
+    public function delete($id){
+        $datos = new PDO\Datos();
+        try{
+            $datos->Conectar();
+            $datos->Delete("DELETE FROM cursos_tienen_archivos WHERE id = $id");
+            return true;
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+        }
     }
 
 }

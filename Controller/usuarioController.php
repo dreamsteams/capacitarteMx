@@ -39,7 +39,7 @@ class usuarioController extends BaseController {
             $usuario->activo = 1;
             $usuario->rol_id = 2;
             $usuario->foto_perfil = 1;
-            $usuario->foto_portada = 2;
+            $usuario->foto_portada = 1;
             $usuario->save();
             echo json_encode(array('message'=>'El usuario se ha reistrado'));
             

@@ -4,7 +4,6 @@ $(document).ready(function() {
     offset: 100
   });
   wow.init();
-
     var cursos;
     function changeiconcolorfocus(element,backgroundColor,fontColor){
           var padre =$(element).parent('div');
@@ -138,5 +137,4 @@ $(document).ready(function() {
              console.log(error);
          });
      });
-
 });

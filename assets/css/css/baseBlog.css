@@ -10,6 +10,20 @@ body {
   overflow-y: auto;
 }
 
+#changePortada{
+    position: absolute;
+    border: none;
+    margin-left: 30px;
+    margin-top: 100px;
+    opacity: 0.3;
+    border-radius: 50%;
+}
+
+#changePortada:hover{
+    transition: 0.4s;
+    opacity: 1;
+}
+
 .my_navbar
 {
     margin-top: 0px;
@@ -96,10 +110,8 @@ view .content, .view .mask {
 
 }
 .img-user {
-	background: url(../../../assets/images/blog/portadas/portada.jpg) center center no-repeat;
-  background-size: cover;
-  margin-bottom: 10px;
-  padding-top: 25px;
+    margin-bottom: 10px;
+    padding-top: 25px;
 }
 
 .img-user>img {

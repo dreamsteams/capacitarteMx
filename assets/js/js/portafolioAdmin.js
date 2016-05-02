@@ -35,7 +35,7 @@ $(document).ready(function(){
         var newSecc =
         "<div class='row seccionPortafolio' data-id-seccion='"+id+"' id='secc"+id+"'>"+
           "<h5 class='section_name'><b id='title"+id+"'>"+nombre+"</b></h5>"+
-          "<button type='button' class='btn btn-info btnAddImagen' data-id-seccion='"+id+"'>Agregar imagen a sección</button>"+
+          "<button type='button' class='btn btn-info btnAddImagen' data-id-seccion='"+id+"'>Agregar imagen</button>"+
           "<div class='contenidos' id='"+id+"'>"+
           "</div>"+
           "<div class='row'>"+
@@ -47,7 +47,8 @@ $(document).ready(function(){
           "</div>"+
         "</div>"+
         "</div>";
-        return newSecc;
+        // return newSecc;
+        $("#tabla tbody").append(newSecc);
       },
       resetForm : function(){
         $("#txtNombre").val("");
@@ -66,25 +67,33 @@ $(document).ready(function(){
           data: datos
         })
         .done(function(response) {
+          alertify.success("¡Sección creada correctamente!");
           $("#zonaSecciones").append($portafolio.seccion.get(nombre, response[1][0].Last));
           $portafolio.seccion.resetForm();
         });        
       },
       eliminar : function(id){
-        var datos = {
-          id : id
-        };
-        $.ajax({
-          url: '/portafolio/sectionDelete/delete',
-          type: 'POST',
-          dataType : 'JSON',
-          data: datos
-        })
-        .done(function(response) {
-          if(response[0] == "success"){
-            $("#secc"+id).hide('slow', function(){
-              $(this).remove();
-            });
+        alertify.confirm("¿Esta usted seguro de eliminar la sección del portafolio?", function (e) {
+        if (e) {
+          var datos = {
+            id : id
+          };
+          $.ajax({
+            url: '/portafolio/sectionDelete/delete',
+            type: 'POST',
+            dataType : 'JSON',
+            data: datos
+          })
+          .done(function(response) {
+            if(response[0] == "success"){
+              $("#secc"+id).hide('slow', function(){
+                alertify.success("¡Sección eliminada correctamente!");
+                $(this).remove();
+              });
+            }
+          });
+        } else {
+            alertify.error("Se ha cancelado la operación");
           }
         });
       },
@@ -101,6 +110,7 @@ $(document).ready(function(){
         })
         .done(function(response) {
           if(response[0] == "success"){
+            alertify.success("¡Sección actualizada correctamente!");
             $("#secUpdate"+id).data("name-seccion", nombre);
             $("#title"+id).html(nombre);
           }
@@ -113,7 +123,7 @@ $(document).ready(function(){
     imagen : {
       setImagen : function(dir, id){
         var query =        
-          "<div class='col-md-4 img-box' id='img"+id+"'>"+
+          "<div class='col-sm-4 img-box' id='img"+id+"'>"+
             "<span class='fa fa-trash fa-2x remove-btn' data-imagen='"+id+"'></span>"+
             "<img src='"+dir+"' class='img-responsive img-thumbnail' />"+
           "</div>";
@@ -135,24 +145,32 @@ $(document).ready(function(){
           processData: false
         })
         .done(function(response){          
+          alertify.success("Imagen agregada correctamente!");
           $("#"+id).append($portafolio.imagen.setImagen(response.imagenRuta, response.imagenId));
         });
         $("#foto").val("");
       },
       eliminar : function(id){
-        var datos = {
-          id : id
-        };
-        $.ajax({
-          url: '/portafolio/imagenDelete/remove',
-          type: 'POST',
-          dataType : 'JSON',
-          data: datos
-        })
-        .done(function(response) {          
-          $("#img"+id).hide('slow', function(){
-            $(this).remove();
+        alertify.confirm("¿Esta usted seguro de eliminar la imagen de la sección?", function (e) {
+        if (e) {
+          var datos = {
+            id : id
+          };
+          $.ajax({
+            url: '/portafolio/imagenDelete/remove',
+            type: 'POST',
+            dataType : 'JSON',
+            data: datos
+          })
+          .done(function(response) {
+            alertify.success("Imagen eliminada correctamente!");
+            $("#img"+id).hide('slow', function(){
+              $(this).remove();
+            });
           });
+        } else {
+            alertify.error("Se ha cancelado la operación");
+          }
         });
       }
     }

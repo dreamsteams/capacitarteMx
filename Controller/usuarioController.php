@@ -25,6 +25,16 @@ class usuarioController extends BaseController {
         $usuario = new \Model\Usuario();
         $usuario->show();
     }
+
+    public function showGestion(){
+        session_start();
+        if($_SESSION['rol'] == 'administrador'){
+          echo $this->View->render('gestionUsuarios.php', array('role'=>$_SESSION['rol'],'session'=>$_SESSION));
+        }
+        else{
+          header('location:/');
+        }
+    }
     
     public function save(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -62,6 +72,28 @@ class usuarioController extends BaseController {
             $usuario->save();
             echo json_encode(array('message'=>'El usuario se ha reistrado'));
 
+        }
+    }
+
+    public function updateUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            extract($_POST);
+            $user = new \Model\Usuario();
+            $user->nombre = $nombre;
+            $user->apellido_paterno = $apellido_paterno;
+            $user->apellido_materno = $apellido_materno;
+            $user->email = $email;
+            $user->Update($id);
+            echo json_encode(array(0=>"/usuario/showGestion/todos"));
+        }
+    }
+
+    public function removeUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            extract($_POST);
+            $user = new \Model\Usuario();
+            $user->disabledUser($id);
+            echo json_encode(array(0=>"/usuario/showGestion/todos"));
         }
     }
 }

@@ -70,3 +70,34 @@
 .adminBtnsDelete{
   background-color: rgb(233, 51, 51)
 }
+
+
+@media (max-width: 1210px) {
+  #cuerpo{
+    padding-left: 3%;
+  }
+  .remove-btn{
+    margin-left: 65%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .btnAddImagen{
+    margin-left: 65%;
+  }
+}
+
+@media (max-width: 901px) {
+  #cuerpo{
+    padding-left: 37%;
+  }
+  .btnAddImagen{
+    margin-left: 60%;
+  }
+}
+
+@media (max-width: 894px) {
+  #cuerpo{
+    padding-left: 1%;
+  }
+}

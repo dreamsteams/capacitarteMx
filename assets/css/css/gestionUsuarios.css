@@ -1,0 +1,23 @@
+#cuerpo{
+	padding-left: 250px;
+	padding-right: 10px;
+}
+
+
+@media (max-width: 1210px) {
+  #cuerpo{
+    padding-left: 2%;
+  }
+}
+
+@media (max-width: 901px) {
+  #cuerpo{
+    padding-left: 37%;
+  }
+}
+
+@media (max-width: 894px) {
+  #cuerpo{
+    padding-left: 1%;
+  }
+}

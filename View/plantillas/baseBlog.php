@@ -50,13 +50,17 @@
          <img src="assets/Imagenes/image-perfil/avatar04.png" class="img-circle img-responsive"/>
          <span>Roger</span>
      </div>-->
+     <form id="formPerfil">
+       <input type="file" id="filePerfil" name="filePerfil" class="hidden">
+     </form>
       <div class="img-user view overlay hm-orange-slight">
-          <img src="/assets/images/image-perfil/avatar04.png"  class="img-circle img-responsive" alt="">
+          <img src="/assets/images/image-perfil/avatar04.png"  class="img-circle img-responsive" alt="" id="imgPerfil">
           <div class="mask">
               <div class="verticalcenter">
                   <p class="white-text text-center">Usuario<br>{{ session['nombre'] }}</p>
               </div>
           </div>
+          <button class="" id="changePortada" title="cambiar imagen de portada"><i class="fa fa-refresh"></i></button>
       </div>
       <ul class="navbar-left-list">
           <li>
@@ -66,12 +70,26 @@
                   <span>Inicio</span>
               </a>
           </li>
+          <li>
+              <a href="javascript:void(0)" id="fotosPerfil">
+                  <i class="fa fa-home"></i>
+                  &nbsp;&nbsp;
+                  <span>Gestion Fotos Perfil</span>
+              </a>
+          </li>
          {% if role == 'administrador'  %}
           <li id="register_user">
               <a>
-                  <i class="fa fa-users"></i>
+                  <i class="fa fa-user-plus"></i>
                   &nbsp;&nbsp;
-                  <span>Registro</span>
+                  <span>Registro Usuarios</span>
+              </a>
+          </li>
+          <li>
+              <a href="/usuario/showGestion/todos">
+                  <i class="fa fa-group"></i>
+                  &nbsp;&nbsp;
+                  <span>Gestión Usuarios</span>
               </a>
           </li>
           <li id="user_assigned">
@@ -87,10 +105,10 @@
                   &nbsp;&nbsp;
                   <span>Gestión Portafolio</span>
               </a>
-          </li>
+          </li>          
           {% endif %}
           <li>
-              <a href="blog/show/cursos">
+              <a href="/blog/show/cursos">
                   <i class="fa fa-book"></i>
                   &nbsp;&nbsp;
                   <span>Cursos</span>
@@ -265,6 +283,7 @@
     <script type="text/javascript" src="/assets/libs/validation/jquery.validate.min.js"></script>
     <script type="text/javascript" src="/assets/libs/validation/localization/messages_es.min.js"></script>
     <script type="text/javascript" src="/assets/js/alertify.js"></script>
+    <script type="text/javascript" src="/assets/js/js/fotosPerfil.js"></script>
     <script type="text/javascript">
        $(document).on('ready',__init);
 

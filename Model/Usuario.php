@@ -18,7 +18,7 @@ class Usuario {
     public static function show(){
         $datos = new PDO\Datos();
         $datos->Conectar();
-        $posts=$datos->Select("Select id,nombre,apellido_paterno,apellido_materno from usuarios where rol_id = (Select id from rol where nombre = 'general')");
+        $posts=$datos->Select("Select id,nombre,apellido_paterno,apellido_materno, email from usuarios where rol_id = (Select id from rol where nombre = 'general' and activo = 1)");
         $datos->Desconectar();
         echo json_encode($posts);
     }
@@ -39,6 +39,13 @@ class Usuario {
         $datos = new PDO\Datos();
         $datos->Conectar();
         $datos->Update("UPDATE archivos SET enabled = '$this->enabled' where id = '$id'");
+        $datos->Desconectar();
+    }
+
+    public function disabledUser($id){
+        $datos = new PDO\Datos();
+        $datos->Conectar();
+        $datos->Update("UPDATE usuarios SET activo = '0' where id = '$id'");
         $datos->Desconectar();
     }
     /*------------------------

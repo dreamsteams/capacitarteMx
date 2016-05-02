@@ -5,14 +5,12 @@ $(document).ready(function(){
 		'type' : 'POST',
 		'dataType' : 'JSON'
 	})
-	.done(function(response){
-		$.each(response, function(index, objeto){
-			$(".img-user").css({
-				'background' : "url(../../../"+objeto.imagenPortada+")",
-				'background-size' : 'cover',
-				'background-position' : 'center'					
-			});
-		});
+	.done(function(response){		
+		$(".img-user").css({
+			'background' : "url(../../../"+response['fotoPortada'][0].imagenPortada+")",
+			'background-size' : 'cover',
+			'background-position' : 'center'					
+		});		
 	});
 
 
@@ -52,4 +50,39 @@ $(document).ready(function(){
 		$(this).val('');
 	});
 
+	$("#changePerfil").click(function(){
+		$("#filePerfilCircle").trigger('click');
+	});
+
+	$("#filePerfilCircle").change(function(){
+		var formData = new FormData($("#formPerfilCircle")[0]);
+
+		$.ajax({
+			url : '/fotoPerfil/imagenPerfilSave/save',
+			type : 'POST',
+			dataType : 'JSON',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false
+		})
+		.done(function(response){
+			console.log(response);
+			if(response.status == 'success'){
+				$("#imgPerfil").attr('src', '/'+response.imagenRuta);
+				alertify.success('Imagen de portada actualizada');
+			}
+			else if(response.status == 'invalid'){
+				alertify.error('Error, el archivo no es una imagen valida');
+			}
+		})
+		.always(function(){
+
+		});
+		$(this).val('');
+	});
+
 });
+
+
+

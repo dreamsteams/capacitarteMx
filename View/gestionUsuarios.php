@@ -56,21 +56,21 @@
             <h4 class="modal-title" id="">Actualizar Usuario</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizonatl" action="" method="post">
+            <form class="form-horizonatl" action="" method="post" id="formularioUsers">
               <div class="form-group">
-                <input type="text" id="txtNombre" class="form-control" placeholder="Nombre" required="true">
+                <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" required="true">
               </div>
               <div class="form-group">
-                <input type="text" id="txtApellidoP" class="form-control" placeholder="Apellido Paterno" required="true">
+                <input type="text" id="txtApellidoP" name="txtApellidoP" class="form-control" placeholder="Apellido Paterno" required="true">
               </div>
               <div class="form-group">
-                <input type="text" id="txtApellidoM" class="form-control" placeholder="Apellido Materno">
+                <input type="text" id="txtApellidoM" name="txtApellidoM" class="form-control" placeholder="Apellido Materno">
               </div>
               <div class="form-group">
-                <input type="email" id="txtEmail" class="form-control" placeholder="E-Mail" required="true">
+                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="E-Mail" required="true">
               </div>
             </form>
-            <button type="button" id="btnFormOk" class="btn btn-info pull-right" data-dismiss="modal">
+            <button type="button" id="btnFormOk" class="btn btn-info pull-right" >
               <i class="fa fa-upload"></i>
               Guardar
             </button>

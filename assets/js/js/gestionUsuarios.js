@@ -41,25 +41,43 @@ $(document).ready(function(){
 			$("#modalUser").modal('show');
 		},
 		update : function(id){
-			var datos = {
-				id : id, 
-				nombre : $("#txtNombre").val(),
-				apellido_paterno :	$("#txtApellidoP").val(),
-				apellido_materno :	$("#txtApellidoM").val(),
-				email :	$("#txtEmail").val()
+			$("#formularioUsers").validate({
+                rules:{
+                    txtNombre:{
+                        required:true
+                    },
+                    txtApellidoP:{
+                        required:true
+                    },
+                    txtEmail:{
+                        email:true,
+                        required:true
+                    }
+                }
+            });
+
+			if($("#formularioUsers").valid()){
+				var datos = {
+					id : id, 
+					nombre : $("#txtNombre").val(),
+					apellido_paterno :	$("#txtApellidoP").val(),
+					apellido_materno :	$("#txtApellidoM").val(),
+					email :	$("#txtEmail").val()
+				}
+				$("#btnFormOk").modal('hide');
+				$.ajax({
+					url : '/usuario/updateUser/update',
+					type : 'POST',
+					dataType : 'JSON',
+					data : datos
+				})
+				.done(function(response){				
+					window.location.href = response[0];
+				})
+				.fail(function(error){
+					console.log(error);
+				});
 			}
-			$.ajax({
-				url : '/usuario/updateUser/update',
-				type : 'POST',
-				dataType : 'JSON',
-				data : datos
-			})
-			.done(function(response){				
-				window.location.href = response[0];
-			})
-			.fail(function(error){
-				console.log(error);
-			});
 		},
 		remove : function($id){
 			alertify.confirm("¿Esta usted seguro de eliminar el usuario?", function (e) {

@@ -10,7 +10,8 @@ $(document).ready(function(){
 			'background' : "url(../../../"+response['fotoPortada'][0].imagenPortada+")",
 			'background-size' : 'cover',
 			'background-position' : 'center'					
-		});		
+		});
+		$("#imgPerfil").attr('src', '/'+response['fotoPerfil'][0].imagenPerfil);		
 	});
 
 
@@ -19,7 +20,7 @@ $(document).ready(function(){
 	});
 
 	$("#filePerfil").change(function(){		
-		var formData = new FormData($("#formPerfil")[0]);
+		var formData = new FormData($("#formPerfil")[0]);		
 
 		$.ajax({
 			url : '/fotoPerfil/imagenSave/save',
@@ -55,7 +56,7 @@ $(document).ready(function(){
 	});
 
 	$("#filePerfilCircle").change(function(){
-		var formData = new FormData($("#formPerfilCircle")[0]);
+		var formData = new FormData($("#formPerfilCircle")[0]);		
 
 		$.ajax({
 			url : '/fotoPerfil/imagenPerfilSave/save',
@@ -66,8 +67,7 @@ $(document).ready(function(){
 			contentType: false,
 			processData: false
 		})
-		.done(function(response){
-			console.log(response);
+		.done(function(response){			
 			if(response.status == 'success'){
 				$("#imgPerfil").attr('src', '/'+response.imagenRuta);
 				alertify.success('Imagen de portada actualizada');

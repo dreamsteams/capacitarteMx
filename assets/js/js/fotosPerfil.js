@@ -4,14 +4,13 @@ $(document).ready(function(){
 		'url' : '/fotoPerfil/getAllUser/get',
 		'type' : 'POST',
 		'dataType' : 'JSON'
-	})
-	.done(function(response){		
+	}).done(function(response){
 		$(".img-user").css({
 			'background' : "url(../../../"+response['fotoPortada'][0].imagenPortada+")",
 			'background-size' : 'cover',
-			'background-position' : 'center'					
+			'background-position' : 'center'
 		});
-		$("#imgPerfil").attr('src', '/'+response['fotoPerfil'][0].imagenPerfil);		
+		$("#imgPerfil").attr('src', '/'+response['fotoPerfil'][0].imagenPerfil);
 	});
 
 
@@ -19,8 +18,9 @@ $(document).ready(function(){
 		$("#filePerfil").trigger('click');
 	});
 
-	$("#filePerfil").change(function(){		
-		var formData = new FormData($("#formPerfil")[0]);		
+
+	$("#filePerfil").change(function(){
+		var formData = new FormData($("#formPerfil")[0]);
 
 		$.ajax({
 			url : '/fotoPerfil/imagenSave/save',
@@ -31,13 +31,13 @@ $(document).ready(function(){
 			contentType: false,
 			processData: false
 		})
-		.done(function(response){	
+		.done(function(response){
 			console.log(response);
 			if(response.status == 'success'){
 				$(".img-user").css({
 					'background' : "url(../../../"+response.imagenRuta+")",
 					'background-size' : 'cover',
-					'background-position' : 'center'					
+					'background-position' : 'center'
 				});
 				alertify.success('Imagen de portada actualizada');
 			}
@@ -51,12 +51,13 @@ $(document).ready(function(){
 		$(this).val('');
 	});
 
+});
 	$("#changePerfil").click(function(){
 		$("#filePerfilCircle").trigger('click');
 	});
 
 	$("#filePerfilCircle").change(function(){
-		var formData = new FormData($("#formPerfilCircle")[0]);		
+		var formData = new FormData($("#formPerfilCircle")[0]);
 
 		$.ajax({
 			url : '/fotoPerfil/imagenPerfilSave/save',
@@ -67,7 +68,7 @@ $(document).ready(function(){
 			contentType: false,
 			processData: false
 		})
-		.done(function(response){			
+		.done(function(response){
 			if(response.status == 'success'){
 				$("#imgPerfil").attr('src', '/'+response.imagenRuta);
 				alertify.success('Imagen de portada actualizada');
@@ -83,6 +84,3 @@ $(document).ready(function(){
 	});
 
 });
-
-
-

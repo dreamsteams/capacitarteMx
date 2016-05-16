@@ -9,20 +9,28 @@ class Usuario_cursos {
         $datos = new PDO\Datos();
         try{
             $datos->Conectar();
-            $cursos=$datos->Insert("INSERT INTO `usuarios_tienen_cursos`(`id`, `usuarios_id`, `curso_id`) VALUES (null,'$this->usuario_id','$this->curso_id')");
-
-            echo json_encode(array('status'=>'200'));
+            $datos->Insert("INSERT INTO  usuarios_tienen_cursos VALUES(null,'$this->usuario_id','$this->curso_id','0000-00-00','0000-00-00')");
         }
         catch(Exception $ex){
             echo $ex->getMessage();
         }
     }
-    public function hasCurso($idCurso){
+    public function delete($id){
         $datos = new PDO\Datos();
-        $IDUSER = $_SESSION['id'];
         try{
             $datos->Conectar();
-            $cursos=$datos->Insert("SELECT count(id) as 'has' from usuarios_tienen_cursos where usuario_id = $IDUSER  and curso_id = $idCurso ");
+            $cursos=$datos->Delete("DELETE FROM usuarios_tienen_cursos where usuario_id = '$id' ");
+
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+        }
+    }
+    public static function hasCurso($idCurso,$usuario_id){
+        $datos = new PDO\Datos();
+        try{
+            $datos->Conectar();
+            $cursos=$datos->Select("SELECT count(id) as 'has' from usuarios_tienen_cursos where usuario_id = '$usuario_id'  and curso_id = '$idCurso'");
             if($cursos[0]['has'] == 0)
                 return '403';
             else
@@ -32,6 +40,17 @@ class Usuario_cursos {
             echo $ex->getMessage();
         }
 
+    }
+    public function whatCoursesHas($id){
+       $datos = new PDO\Datos();
+        try{
+            $datos->Conectar();
+            $cursos=$datos->SelectJson("SELECT curso_id from usuarios_tienen_cursos where usuario_id = $id");
+            echo $cursos;
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+        }
     }
 
 }

@@ -69,7 +69,7 @@ $(document).ready(function(){
         .done(function(response) {
           alertify.success("¡Sección creada correctamente!");
           $("#zonaSecciones").append($portafolio.seccion.get(nombre, response[1][0].Last));
-          $portafolio.seccion.resetForm();          
+          $portafolio.seccion.resetForm();
         });        
       },
       eliminar : function(id){

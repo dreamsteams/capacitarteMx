@@ -21,7 +21,7 @@ $(document).ready(function(){
 			          'email' : response[index].email,
 			          'id' : response[index].id
 			        });
-			      });			      
+			      });
 			      $('#tabla-profesores').bootstrapTable({
 			        data : datos
 			      });
@@ -58,7 +58,7 @@ $(document).ready(function(){
 
 			if($("#formularioUsers").valid()){
 				var datos = {
-					id : id, 
+					id : id,
 					nombre : $("#txtNombre").val(),
 					apellido_paterno :	$("#txtApellidoP").val(),
 					apellido_materno :	$("#txtApellidoM").val(),
@@ -71,7 +71,7 @@ $(document).ready(function(){
 					dataType : 'JSON',
 					data : datos
 				})
-				.done(function(response){				
+				.done(function(response){
 					window.location.href = response[0];
 				})
 				.fail(function(error){
@@ -84,20 +84,20 @@ $(document).ready(function(){
 				if (e) {
 					var datos = {
 						id : $id
-					}			
+					}
 					$.ajax({
 						url : '/usuario/removeUser/remove',
 						type : 'POST',
 						dataType : 'JSON',
 						data : datos
 					})
-					.done(function(response){										
+					.done(function(response){
 						window.location.href = response[0];
 						// alertify.success("Eliminado correctamente. Espere un momento.");
 					})
 					.fail(function(error){
 						console.log(error);
-					});					
+					});
 				} else {
 					// alertify.error("Se ha cancelado la operación");
 				}
@@ -110,13 +110,13 @@ $(document).ready(function(){
 	// de forma dinamica
 	usuario.getAll();
 
-	// Variable auxiliar para 
+	// Variable auxiliar para
 	// guardar datos de identificacion
 	var aux;
 
 	// Click en el boton de actualizar
-	$("#actualizar").click(function(){		
-		if($tabla.bootstrapTable('getSelections').length != 0){			
+	$("#actualizar").click(function(){
+		if($tabla.bootstrapTable('getSelections').length != 0){
 			aux = $tabla.bootstrapTable('getSelections')[0].id;
 			var nombre = $tabla.bootstrapTable('getSelections')[0].nombre_user;
 			var apep = $tabla.bootstrapTable('getSelections')[0].apellido_paterno;
@@ -133,7 +133,7 @@ $(document).ready(function(){
 	$("#eliminar").click(function(){
 		if($tabla.bootstrapTable('getSelections').length != 0){
 			var id = $tabla.bootstrapTable('getSelections')[0].id;
-			usuario.remove(id);			
+			usuario.remove(id);
 		}
 		else{
 			alertify.error("No se ha seleccionado ningun usuario");

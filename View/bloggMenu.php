@@ -43,11 +43,11 @@
           <input type="text" name="titulo" class="form-control" id="titulo">
         </div>
         <div class="form-group">
-          <label for="">Fecha Inicio <label>
+            <label for="">Fecha Inicio </label>
           <input type="date" name="fecha_inicio" class="form-control col-md-12" id="fecha_inicio">
         </div>
         <div class="form-group">
-          <label for="">Fecha Fin <label><br>
+            <label for="">Fecha Fin </label><br>
           <input type="date" name="fecha_fin" class="form-control col-md-12" id="fecha_fin">
         </div>
         <div class="form-group">
@@ -65,7 +65,11 @@
               <input type="file" id="img-curso" accept="image/gif,image/jpeg,image/png" style="display:none;"  name="file" >
           </form>
           <label>Archivos para el curso</label>
-          <form id="my-dropzone" enctype="multipart/form-data" method="POST" class="dropzone col-md-12" >
+          <div id="files_curso" class="hide"  style="background:rgba(221, 211, 211, 0.8); color:#000; border:none;">
+
+          </div>
+          <form id="my-dropzone" enctype="multipart/form-data" method="POST" class="dropzone col-md-12" style="background:rgba(221, 211, 211, 0.8); color:#000; border:none;" >
+
             <div class="fallback">
                 <input type="file" class="fallback"  name="file" id="file">
 
@@ -94,9 +98,9 @@
     </div>
 
   </div>
-{%endblock%}
+{% endblock %}
 
-{%block js%}
+{% block js %}
  <script type="text/javascript" src="/assets/js/js/Create.js"></script>
  <script type="text/javascript" src="/assets/js/dropzone.js"></script>
   <script type="text/javascript">
@@ -126,7 +130,9 @@
 
       $("#btnAddCancel").click(function(event) {
         $(".pagePosts").show('slow');
+        clearFrmCurso();
         $(".pageAdd").attr('hidden', 'hidden');
+        $("#files_curso").addClass('hide');
       });
 
       $(".btnUpdatePost, .btnDelPost").hover(function() {
@@ -188,21 +194,45 @@
                     processData: false,
                     data:formData,
                     beforeSend: function(){
-                            alertify.log("El curso se esta guardando");
+                        $("#send").prop('disabled',true);
+                        $("#send").text('Guardando...');
+                        alertify.log("Los archivos del curso se estan guardando");
+                        $("#subirJuego").trigger('click');
                     },
                 }).done(function(response){
-
                     alertify.success("El curso se guardo con exito");
-                    alertify.log("Los archivos del curso se estan guardando");
-                    $("#subirJuego").trigger('click');
                     //window.location="/blog/show/all";
 
                 }).fail(function(error,status,statusText){
                     console.log(status);
                     console.log(error);
                     console.log(statusText);
-                });
+                }).always(function(){
+                    $("#send").prop('disabled',false);
+                    $("#send").text('Guardar');
+                 });
              }
+        });
+        $("#files_curso").on('click','#delete-file',function(){
+            $.ajax({
+                url:'/curso/deleteFiles/borrar-archivo',
+                method:'POST',
+                dataType:'JSON',
+                data:{id:$(this).attr('data-id')}
+            }).done(function(response){
+                if(response.status)
+                    alertify.success("El archivo fue eliminado");
+
+                    getFilesCurso(idCurso);
+                }).fail(function(error,status,statusText){
+                    console.log(status);
+                    console.log(error);
+                    console.log(statusText);
+                });
+        });
+
+        $("#files_curso_modal").on('click','#view-file',function(){
+            window.location=$(this).attr('data-route');
         });
 
         cargarCursos();
@@ -255,9 +285,6 @@
                             console.log(statusText);
                         });
                 }
-                else{
-                    alertify.alert('OK');
-                }
             });
         });
         $(".pagePosts > #contPost .posters").on("click","button[name=btn-refresh]",function(){
@@ -265,6 +292,7 @@
             $("#titulo").val($(".posters #title_post_"+idCurso).text());
             $("#content").val($(".posters #content_post_"+idCurso).attr('title').replace("Comentario:",""));
             $("#send").attr('hidden','hidden');
+            getFilesCurso(idCurso);
             $("#fecha_inicio").val(moment(fecha_inicio).format('YYYY-MM-DD'));
             $("#fecha_fin").val(moment(fecha_fin).format('YYYY-MM-DD'));
             $("#update").removeAttr('hidden');
@@ -283,10 +311,83 @@
                 console.log(response);
                 if(response.status == '403')
                     alertify.alert("Aun no te haz unido a este curso. Comunicate con el administrador");
+                else{
+                    getFilesCursoModal(idCurso);
+                    $("#modal_files_curso").modal('show');
+                }
             }).fail(function(error){
                 console.log(error);
             });
         });
+        function getFilesCursoModal(id_Curso){
+                $.ajax({
+                    url:'/curso/getFilesCursos/obtener-cursos',
+                    method:'POST',
+                    dataType:'JSON',
+                    data:{id:id_Curso}
+                }).done(function(response){
+                    console.log(response);
+                    if(response.status == 200){
+                        var jsonResponse = JSON.parse(response.files);
+                    }
+                    console.log(jsonResponse);
+                    var filesCurso = {
+                            create: function(name,id,ruta){
+                                return '<div class="col-md-4">'+
+                                          '<image src="/assets/files/cursos/fileCurso.png" class="col-md-12"></image><br>'+
+                                          '<label class="col-md-12" style="word-wrap:brake-word">'+name+'</label>'+
+                                          '<button class="btn btn-info col-md-12" id="view-file" data-id='+id+' data-route='+ruta+'>Ver</button>'+
+                                      '</div>'
+                            }
+                        }
+                    $("#files_curso_modal").empty();
+                    $.each(jsonResponse,function(index,file){
+                        $("#message_not_files").addClass("hide");
+                        $("#files_curso_modal").append(filesCurso.create(file.nombre,file.id,'/'+file.ruta));
+                    });
+                }).fail(function(error){
+                    console.log(error);
+                });
+            }
+        function clearFrmCurso(){
+            $("#titulo").trigger('reset');
+            $("#content").trigger('reset');
+            $("#fecha_inicio").trigger('reset');
+            $("#fecha_fin").trigger('reset');
+            $("#image-curso").attr('src','');
+            $("#image-curso").addClass('hide');
+            $("input[name=name]").attr('placeholder',"Seleccionar una imagen");
+        }
+        function getFilesCurso(id_Curso){
+            $.ajax({
+                url:'/curso/getFilesCursos/obtener-cursos',
+                method:'POST',
+                dataType:'JSON',
+                data:{id:id_Curso}
+            }).done(function(response){
+                console.log(response);
+                if(response.status == 200){
+                    var jsonResponse = JSON.parse(response.files);
+                }
+                console.log(jsonResponse);
+                var filesCurso = {
+                        create: function(name,id,ruta){
+                            return '<div class="col-md-2">'+
+                                      '<image src="/assets/files/cursos/fileCurso.png" class="col-md-12"></image><br>'+
+                                      '<label class="col-md-12">'+name+'</label>'+
+                                      '<button class="btn btn-danger" id="delete-file" data-id='+id+' data-route='+ruta+'>Eliminar</button>'+
+                                  '</div>'
+                        }
+                    }
+                $("#files_curso").empty();
+                $.each(jsonResponse,function(index,file){
+                    $("#files_curso").append(filesCurso.create(file.nombre,file.id,file.ruta));
+                });
+                $("#files_curso").removeClass('hide');
+            }).fail(function(error){
+                console.log(error);
+            });
+        }
         $("#update").click(function(){
             alertify.confirm("¿Realmente deseas actualizar estos campos?",function(e){
                 if(e){
@@ -305,10 +406,14 @@
                         processData: false,
                         data:formData,
                         beforeSend:function(){
-                            alertify.log("El curso se esta actualizando");
+                             $("#update").prop('disabled',true);
+                             $("#update").text('Actualizando...');
+                             alertify.log("Los archivos del curso se estan guardando");
+
+                             $("#subirJuego").trigger('click');
+
                         }
                     }).done(function(response){
-
                         alertify.success("Se actualizo el curso con exito");
                         cargarCursos();
                         $("#btnAddCancel").trigger('click');
@@ -317,6 +422,9 @@
                         console.log(status);
                         alertify.error(error);
                         console.log(statusText);
+                    }).always(function(){
+                        $("#update").prop('disabled',false);
+                        $("#update").text('Actualizar');
                     });
                 }
             });
@@ -324,28 +432,14 @@
         });
         var fileAdded;
         Dropzone.options.myDropzone = {
-            url: 'curso/uploadFileCourse/subir-archivos',
+            url: '/curso/uploadFileCourse/subir-archivos',
             autoProcessQueue : false,
             uploadMultiple:true,
             maxFiles:10,
-            thumbnailHeight: 120,
-            thumbnailWidth: 120,
             addRemoveLinks:true,
-            thumbnail: function(file, dataUrl) {
-              if (file.previewElement) {
-                file.previewElement.classList.remove("dz-file-preview");
-                var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
-                for (var i = 0; i < images.length; i++) {
-                  var thumbnailElement = images[i];
-                  thumbnailElement.alt = file.name;
-                  thumbnailElement.src = dataUrl;
-                }
-                setTimeout(function() { file.previewElement.classList.add("dz-image-preview"); }, 1);
-              }
-            },
             maxFilesize:10000000,//MB
             success: function(file, response){
-
+                getFilesCurso(idCurso);
             },
             init:function(){
                 var submitButton = document.querySelector('#subirJuego');
@@ -390,9 +484,10 @@
 
                 });
 
-                this.on('sending',function(files,response){
+                this.on('sending',function(files,xhr,formData){
                     $("#subirJuego").prop('disabled',true);
                     $("#removeFile").attr('disabled',true);
+                    formData.append('id', idCurso);
                     $("#subirJuego").text('Subiendo archivo...');
                 });
 

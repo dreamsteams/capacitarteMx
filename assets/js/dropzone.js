@@ -114,12 +114,12 @@
 
     Dropzone.prototype.defaultOptions = {
       url: null,
-      method: "post",
+      method: "POST",
       withCredentials: false,
       parallelUploads: 10,
       uploadMultiple: true,
       maxFilesize: 256,
-      paramName: "juego_zip",
+      paramName: "file",
       createImageThumbnails: true,
       maxThumbnailFilesize: 10,
       thumbnailWidth: 120,
@@ -145,7 +145,7 @@
       dictResponseError: "Server responded with {{statusCode}} code.",
       dictCancelUpload: "Cancel upload",
       dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
-      dictRemoveFile: "Remove file",
+      dictRemoveFile: "Eliminar archivo",
       dictRemoveFileConfirmation: null,
       dictMaxFilesExceeded: "You can not upload any more files.",
       accept: function(file, done) {

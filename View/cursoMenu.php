@@ -23,13 +23,13 @@
               <div>
                 <label><span class="fa fa-plus"></span></label>
               </div>
-              <h4><b>AÃ±adir Curso</b></h4>
+              <h4><b>A«Ðadir Curso</b></h4>
             </center>
           </div>
         </div>
         <div class="posters">
 
-        <!-- ./Aqui se iran aÃ±adiendo los posts dinamicamente -->
+        <!-- ./Aqui se iran aÃ±adiendo los posts dinamicamente --->
         </div>
 
       </div>

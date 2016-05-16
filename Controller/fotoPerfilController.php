@@ -30,11 +30,11 @@ class fotoPerfilController extends BaseController {
 
   public function imagenSave(){
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-      $foto = $_FILES['filePerfil'];      
-      $extension = $this->getFileExtension($foto['name']);      
+      $foto = $_FILES['filePerfil'];
+      $extension = $this->getFileExtension($foto['name']);
       if($extension == ".jpg" || $extension == ".jpeg" || $extension == ".png" || $extension == ".bmp" || $extension == ".gif"){
         try
-        { 
+        {
           $nombreImagenNew = "_".date('Y-m-d')."_".rand()."_MX_".$foto['name'];
           $myDir = "assets/images/image-portada/".$nombreImagenNew;
           move_uploaded_file($foto["tmp_name"], $myDir);
@@ -42,7 +42,7 @@ class fotoPerfilController extends BaseController {
           $imagen->nombreImagen = $nombreImagenNew;
           $imagen->rutaImagen = $myDir;
           $imagen->extensionImagen = $extension;
-          $imagen->savePortada();          
+          $imagen->savePortada();
         }
         catch(Exception $ex)
         {
@@ -57,11 +57,11 @@ class fotoPerfilController extends BaseController {
 
   public function imagenPerfilSave(){
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-      $foto = $_FILES['filePerfilCircle'];      
-      $extension = $this->getFileExtension($foto['name']);      
+      $foto = $_FILES['filePerfilCircle'];
+      $extension = $this->getFileExtension($foto['name']);
       if($extension == ".jpg" || $extension == ".jpeg" || $extension == ".png" || $extension == ".bmp" || $extension == ".gif"){
         try
-        { 
+        {
           $nombreImagenNew = "_".date('Y-m-d')."_".rand()."_MX_".$foto['name'];
           $myDir = "assets/images/image-perfil/".$nombreImagenNew;
           move_uploaded_file($foto["tmp_name"], $myDir);
@@ -69,7 +69,7 @@ class fotoPerfilController extends BaseController {
           $imagen->nombreImagen = $nombreImagenNew;
           $imagen->rutaImagen = $myDir;
           $imagen->extensionImagen = $extension;
-          $imagen->savePerfil();          
+          $imagen->savePerfil();
         }
         catch(Exception $ex)
         {

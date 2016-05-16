@@ -1,19 +1,6 @@
 * {
     box-sizing: border-box;
 }
-
-input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.materialize-textarea, textarea.form-control {
-    background-color: transparent;
-    border: solid 1px #bbbbbb;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 1rem;
-    padding-left: 10px;
-    padding-right: 10px;
-    box-sizing: border-box;
-    transition: all .3s;
-}
-
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

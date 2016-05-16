@@ -1,6 +1,6 @@
 {%extends 'plantillas/baseBlog.php'%}
 {%block title%}Gestión Usuarios{% endblock%}
-{%block css%}  
+{%block css%}
   <link rel="stylesheet" media="all" href="/assets/css/css/.css">
 {%endblock%}
 
@@ -45,6 +45,6 @@
   </section>
 {%endblock%}
 
-{%block js%}  
+{%block js%}
   <script src="/assets/js/js/.js" charset="utf-8"></script>
 {%endblock%}

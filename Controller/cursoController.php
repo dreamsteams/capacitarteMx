@@ -36,10 +36,11 @@ class cursoController extends BaseController {
     }
     public function getFiles(){
         extract($_POST);
-        $hasCurso = new \Model\Usuario_cursos();
-        if($hasCurso->hasCurso($id) == '200'){
-            $filesCourse = new \Model\Cursos_archivos();
-            echo $filesCourse->findFiles($id);
+        session_start();
+        $usuario_id = $_SESSION['id'];
+        if(\Model\Usuario_cursos::hasCurso($id,$usuario_id) == '200'){
+            $filesCourse = new \Model\Curso_archivos();
+            echo json_encode(array('status'=>'200'));
         }
         else{
             echo json_encode(array('status'=>'403'));
@@ -106,9 +107,65 @@ class cursoController extends BaseController {
     }
     public function uploadFileCourse(){
         extract($_POST);
-        $curso = new \Model\Curso();
-        $ultimoCurso = $curso->find()[0]['Last'];
+        if($id == ''){
+            $curso = new \Model\Curso();
+            $this->uploadFiles($curso->find()[0]['Last']);
+        }
+        else
+            $this->uploadFiles($id);
 
+    }
+    public function getFilesCursos(){
+        extract($_POST);
+        $curso_archivos = new \Model\Curso_archivos();
+        $curso_archivos->findFiles($id);
+    }
+    public function deleteFiles(){
+        extract($_POST);
+        $curso_archivos = new \Model\Curso_archivos();
+        $curso_archivos->delete($id);
+        echo json_encode(array('status'=>'200'));
+    }
+    public function uploadFiles($idCurso){
+        try{
+                $curso = new \Model\Curso();
+                $cursoFile = new \Model\Curso_archivos();
+                if(is_array($_FILES['file'])){
+                    foreach($_FILES['file']['name'] as $index=>$name){
+
+                         $filename = $name;
+                         if(!file_exists("assets/files/cursos/".$filename)){
+
+                                move_uploaded_file($_FILES["file"]["tmp_name"][$index], "assets/files/cursos/" . $filename);
+
+                          }
+
+                          $file = new \Model\Archivo();
+                          $file->nombre = $filename;
+                          $file->ruta = "assets/files/cursos/" . $filename;
+                          $file->ext = $this->getFileExtension($filename);
+                          $file->enabled = 1;
+                          $file->save();
+                          $cursoFile->curso_id = $idCurso;
+                          $cursoFile->archivo_id = $file->find()[0]['Last'];
+                          $cursoFile->save();
+
+                      }
+                }
+                else{
+                    /*$id_file = $this->uploadFile($_FILES['files']);
+                        if($id_file != null){
+                            $cursoFile->curso_id = $ultimoCurso;
+                            $cursoFile->archivo_id = $id_file[0]['Last'];
+                            $cursoFile->save();
+                        }*/
+                }
+                echo json_encode(array('status'=>'200'));
+
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
     public function update(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -130,15 +187,18 @@ class cursoController extends BaseController {
             echo json_encode(array(0=>'Success'));
         }
     }
-    private function uploadFile(){
+    private function getFileExtension($fileName){
+        // $res = explode('.', $fileName);
+        // $ext = $res[count($res) - 1];
+        $ext = strrchr($fileName, '.');
+        return $ext;
     }
+
     private function uploadImage(){
         extract($_POST);
         if($_FILES["file"]["name"] != "")
         {
             $file = $_FILES["file"];
-            //print_r($file);
-            //return;
             $nombre = "image_".str_replace(" ","_",$nombre);
             $tipo = $file["type"];
             $ruta_provisional = $file["tmp_name"];

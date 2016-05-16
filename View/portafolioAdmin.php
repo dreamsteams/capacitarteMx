@@ -1,5 +1,5 @@
 {%extends 'plantillas/baseBlog.php'%}
-{%block title%}Gestión Portafolio{% endblock%}
+{%block title%} Gestión de portafolio {% endblock%}
 {%block css%}
   <link rel="stylesheet" media="all" href="/assets/css/css/portafolioAdmin.css">
 {%endblock%}

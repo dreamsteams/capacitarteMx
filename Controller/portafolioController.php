@@ -35,6 +35,7 @@ class portafolioController extends BaseController {
   public function show(){
     session_start();
     if($_SESSION['rol'] == 'administrador'){
+
       echo $this->View->render('portafolioAdmin.php',array('role'=>$_SESSION['rol'],'session'=>$_SESSION));
     }
     else{

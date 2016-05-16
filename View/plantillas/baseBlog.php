@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head><meta http-equiv="Content-Type" content="text/html;">
@@ -26,7 +25,7 @@
     <!--Header-->
     <header class="my_navbar hoverable">
        <div class="logo">
-           <img src="../../assets/images/logo.png" width="60%" class="img-responsive">
+           <img src="/assets/images/logo.png" width="60%" class="img-responsive">
        </div>
          <ul class="migas">
              <li class="active">
@@ -109,7 +108,7 @@
                   &nbsp;&nbsp;
                   <span>Gestión Portafolio</span>
               </a>
-          </li>          
+          </li>
           {% endif %}
           <li>
               <a href="/blog/show/cursos">
@@ -118,7 +117,7 @@
                   <span>Cursos</span>
               </a>
           </li>          
-          <li class="toggle-menu" hidden="hidden">
+          <li class="toggle-menu">
               <a href="/login/logout/cerrar-sesion">
                   <i class="fa fa-reply"></i>
                   &nbsp;&nbsp;
@@ -243,7 +242,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" id="close_modal_assigned" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Registro de Usuario</h4>
+            <h4 class="modal-title" id="myModalLabel">Asignar curso</h4>
           </div>
           <div class="modal-body">
               <select id="users" class="form-control">
@@ -251,12 +250,33 @@
               </select>
               <br><br>
               <div class="row">
+                  <div class='checkbox_cursos' style="margin-left:10px;"><input type='checkbox' id="seleccionar_todo"  /> <label for="seleccionar_todo">Seleccionar todo</label></div><br>
                   <div id="cursos" class="col-md-12">
+
                   </div>
               </div>
          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-action="save" id="reg_user"><i class="fa fa-save"></i> Guardar</button>
+            <button type="button" class="btn btn-primary" data-action="save" id="asign_user"><i class="fa fa-save"></i> Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal_files_curso" tabindex="-1" role="dialog" aria-labelledby="" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" id="close_modal_file" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Archivos del curso</h4>
+          </div>
+          <div class="modal-body">
+             <h4 id="message_not_files" class="text-center col-md-4 col-md-offset-4">Sin archivos</h4>
+              <div id="files_curso_modal" class="col-md-12">
+
+              </div>
+         </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-action="save" id="asign_user"><i class="fa fa-save"></i> Guardar</button>
           </div>
         </div>
       </div>
@@ -318,10 +338,6 @@
                  }
              });
 
-
-
-
-
             cargarUsuariosAssigned();
             function cargarUsuariosAssigned(){
                 $.ajax({
@@ -346,7 +362,7 @@
                 }).done(function(response){
                     var checkbox = {
                         create:function(id,label){
-                         return "<input type='checkbox' id="+id+"  /> <label for="+id+">"+label+"</label><br>";
+                         return "<div class='checkbox_cursos'><input type='checkbox' id="+id+"  /> <label for="+id+">"+label+"</label></div><br>";
                         }
                     }
                     $.each(response,function(i,objeto){
@@ -356,6 +372,15 @@
                     console.log(error);
                 });
             }
+
+            function limpiarChecked(){
+                $("#cursos").children('.checkbox_cursos').each(function(){
+                     if($(this).children('input[type=checkbox]').is(":checked"))
+                         $(this).children('input[type=checkbox]').prop("checked",false);
+                });
+            }
+
+
             //-----------------------------------
                 //------ CLOUSHURES -----------
             //----------------------------------
@@ -399,15 +424,88 @@
                 $("#modal_register_user").modal('hide');
             });
 
+            $("#close_modal_file").click(function(){
+
+                $("#modal_files_curso").modal('hide');
+            });
+
 
 
 
             
             $("#close_modal_assigned").click(function(){
                 $("#modal_assigned_user").modal('hide');
+                $("#cursos").children('.checkbox_cursos').each(function(){
+                        $(this).children('input[type=checkbox]').prop('checked',false);
+                });
             });
 
+            $("#users").change(function(){
+                $.ajax({
+                    url:'/usuarioscur/hasCuourses/sus-cursos',
+                    method:'POST',
+                    dataType:'JSON',
+                    cache:false,
+                    data:{'id':$(this).val()}
+                }).done(function(response){
+                    limpiarChecked();
+                    $.each(response,function(index,valor){
+                        $("#cursos").children('.checkbox_cursos').each(function(){
+
+                            if($(this).children('input[type=checkbox]').attr('id') == valor.curso_id){
+                                $(this).children('input[type=checkbox]').prop('checked',true);
+                            }
+                        });
+                    });
+                }).fail(function(error){
+                    console.log(error);
+                });
+            });
             
+            $("#asign_user").click(function(e){
+                e.preventDefault();
+                //--- ./Variable para saber que cursos se asignarán
+                var cursos_assigned = [];
+                $("#cursos").children('.checkbox_cursos').each(function(index,checkbox){
+                    if($(this).children('input[type=checkbox]').is(":checked"))
+                        cursos_assigned.push({curso_id:$(this).children('input[type=checkbox]').attr('id')});
+                });
+                console.log(cursos_assigned);
+                var data = [];
+                data.push({name:'usuario_id',value:$("#users").val()});
+                data.push({name:'cursos',value:JSON.stringify(cursos_assigned)});
+                $.ajax({
+                    url:'/usuarioscur/assigned_curso/asignar-cursos',
+                    method:'POST',
+                    dataType:'JSON',
+                    data:data,
+                    beforeSend:function(){
+                        $("#asign_user").prop('disabled',true);
+                        $("#asign_user").text('Guardando...');
+                    }
+                }).done(function(response){
+                    $("#asign_user").text('');
+                    $("#asign_user").prop('disabled',false);
+                    $("#asign_user").append('<i class="fa fa-save"></i> Guardar');
+                    if(response.status == '200')
+                        alertify.success(response.message);
+                }).fail(function(error){
+                    console.log(error);
+                });
+            });
+
+            $("#seleccionar_todo").click(function(){
+                if($(this).is(":checked")){
+                    $("#cursos").children('.checkbox_cursos').each(function(){
+                        $(this).children('input[type=checkbox]').prop('checked',true);
+                    });
+                }
+                else{
+                    $("#cursos").children('.checkbox_cursos').each(function(){
+                        $(this).children('input[type=checkbox]').prop('checked',false);
+                    });
+                }
+            });
 
         }
 

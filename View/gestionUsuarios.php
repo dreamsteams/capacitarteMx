@@ -8,7 +8,7 @@
 {%block contenido%}
   <section id="cuerpo">
     <section id="informacion">
-      <div id="toolbar" class="btn-group">        
+      <div id="toolbar" class="btn-group">
         <button type="button" class="btn btn-default tooltipShow" id="actualizar" title="Modificar Seleccionado">
             <i class="fa fa-refresh"></i>
         </button>
@@ -40,7 +40,7 @@
           <tr>
             <th data-field="state" data-radio="true"></th>
             <th data-field='nombre'>Nombre</th>
-            <th data-field='email'>E-Mail</th>            
+            <th data-field='email'>E-Mail</th>
           </tr>
         </thead>
       </table>

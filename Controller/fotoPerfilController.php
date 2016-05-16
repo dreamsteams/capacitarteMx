@@ -55,10 +55,37 @@ class fotoPerfilController extends BaseController {
     }
   }
 
+  public function imagenPerfilSave(){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+      $foto = $_FILES['filePerfilCircle'];
+      $extension = $this->getFileExtension($foto['name']);
+      if($extension == ".jpg" || $extension == ".jpeg" || $extension == ".png" || $extension == ".bmp" || $extension == ".gif"){
+        try
+        {
+          $nombreImagenNew = "_".date('Y-m-d')."_".rand()."_MX_".$foto['name'];
+          $myDir = "assets/images/image-perfil/".$nombreImagenNew;
+          move_uploaded_file($foto["tmp_name"], $myDir);
+          $imagen = new \Model\FotoPerfil();
+          $imagen->nombreImagen = $nombreImagenNew;
+          $imagen->rutaImagen = $myDir;
+          $imagen->extensionImagen = $extension;
+          $imagen->savePerfil();
+        }
+        catch(Exception $ex)
+        {
+          echo json_encode("ERROR: ".$ex);
+        }
+      }
+      else{
+        echo json_encode(array('status'=>"invalid"));
+      }
+    }
+  }
+
   public function getAllUser(){
     if($_SERVER['REQUEST_METHOD'] == "POST"){
       $fotos = new \Model\FotoPerfil();
-      $fotos->get();
+      $fotos->getAllUser();
     }
   }
 

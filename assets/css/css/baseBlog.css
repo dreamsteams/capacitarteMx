@@ -10,6 +10,19 @@ body {
   overflow-y: auto;
 }
 
+#changePerfil{
+    position: absolute;
+    border: none;
+    margin-left: -150px;
+    margin-top: 100px;
+    opacity: 0.3;
+    border-radius: 50%;
+}
+
+#changePerfil:hover{
+    opacity: 1;
+}
+
 #changePortada{
     position: absolute;
     border: none;

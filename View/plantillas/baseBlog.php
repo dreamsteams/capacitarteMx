@@ -52,13 +52,17 @@
      <form id="formPerfil">
        <input type="file" id="filePerfil" name="filePerfil" class="hidden">
      </form>
+     <form id="formPerfilCircle">
+       <input type="file" id="filePerfilCircle" name="filePerfilCircle" class="hidden">
+     </form>
       <div class="img-user view overlay hm-orange-slight">
-          <img src="/assets/images/image-perfil/avatar04.png"  class="img-circle img-responsive" alt="" id="imgPerfil">
+          <img class="img-circle img-responsive" alt="" id="imgPerfil">
           <div class="mask">
               <div class="verticalcenter">
                   <p class="white-text text-center">Usuario<br>{{ session['nombre'] }}</p>
               </div>
           </div>
+          <button class="" id="changePerfil" title="cambiar imagen de perfil"><i class="fa fa-refresh"></i></button>
           <button class="" id="changePortada" title="cambiar imagen de portada"><i class="fa fa-refresh"></i></button>
       </div>
       <ul class="navbar-left-list">
